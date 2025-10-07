@@ -1,0 +1,479 @@
+---
+title: "Echo ATS-BT Quick Start Guide"
+sidebarTitle: "ATS-BT Quick Start"
+---
+
+## **Overview**
+
+The ATS-BT (Acoustic Test System \- Bluetooth) module is a Bluetooth communication module controlled through simple text commands. Send commands over a serial connection, and the module handles all the Bluetooth complexity for you. Perfect for acoustic testing, audio development, and test automation.
+
+**What you'll do in the next:** Connect the hardware → Open a terminal → Send your first command → Control Bluetooth functions
+
+The ATS-BT module features S/PDIF digital IO with connectivity through micro BNC ports. It can run stand-alone and will connect to any S/PDIF capable interface.  
+
+## **Step 1: Connect Your Hardware**
+
+<div style={{display: 'flex', gap: '10px', marginBottom: '10px'}}>
+  <img src="/images/ats-bt-front.jpg" alt="ATS-BT Front" style={{width: '95%', height: 'auto'}} />
+  <img src="/images/ats-bt-rear.jpg" alt="ATS-BT Rear" style={{width: '95%', height: 'auto'}} />
+</div>
+
+**Figure 1:**  **ATS-BT Module Front and Rear**
+
+![ATS Right Rear](/images/ats-right-rear.jpg)
+
+**Figure 2:  ATS  rear view showing where ATS-BT connects to the ATS.**
+
+Just three connections are need to get started:
+
+1. **USB**: Connect a USB type C cable to the device and the host computer  
+2. Connect the **OUTPUT** of the BT module to the **INPUT** on the ATS  
+3. Connect the **INPUT** of the BT module to the **OUTPUT** on the ATS
+
+The TX/RX swap is intentional—the module receives what you transmit and vice versa.
+
+**Power & Status:**
+
+The module is powered via USB \- no external power supply needed  
+The blue LED indicates status:  
+  * **Solid White**: Initializing  
+  * **Rapid Blinking**: In Bluetooth Pairing Mode  
+  * **Slow Blinking:** Bluetooth Connected or Idle  
+  * **Off**: No power or Idle
+
+## **Step 2: Configure Your Terminal**
+
+### **On Windows**
+
+Download PuTTY from putty.org if you don't have it already.
+
+### **Find your com port**
+
+Open Device Manager (press Windows+X, then M) and look under "Ports (COM & LPT)". Note your COM port number—probably something like COM3 or COM4. It will be listed as a “USB Serial Device”.
+
+Open PuTTY and:
+
+1. Click "Serial" as the connection type  
+2. Enter your COM port number (like COM3)  
+3. Change Speed from 9600 to **115200**  
+4. Click "Open"
+
+Your PuTTY terminal settings should look like this:
+
+![PuTTY Configuration](/images/putty_config.png)
+
+Figure 3: Putty terminal setup
+
+For the best user experience, configure these terminal settings:
+
+* **Local echo**: Force on (so you can see what you type)  
+* **Implicit CR in every LF**: On (proper line endings)  
+* **Implicit LF in every CR**: On (proper line endings)
+
+## **Step 3: Try These Essential Commands**
+
+Now let's explore what your module can do. Type each command as shown (lowercase is ok) and press Enter:
+
+### **Get Module Information**
+
+Type the following command:
+
+```bash
+VERSION
+```
+
+This returns your module's firmware version. You'll see something like:
+
+```
+ATS-BT
+Copyright 2025 Echo Audio Test + Measurement
+Firmware: 1.0.3
+```
+
+### **Get Your Module's Bluetooth Address**
+
+Type the following command:
+
+```bash
+GET LOCAL_ADDR
+```
+
+You'll receive a 12-character address like:
+
+```
+LOCAL_ADDR=112233445566
+OK
+```
+
+### **See All Settings**
+
+Type the following command:
+
+```bash
+CONFIG
+```
+
+This displays all 
+
+current configuration parameters. It's a longer response showing various settings like device name, audio configuration, and enabled features.
+
+### **Scan for Nearby Bluetooth Devices**
+
+Type the following command:
+
+```bash
+INQUIRY 10
+```
+
+This scans for 10 seconds and shows discoverable devices:
+
+```
+PENDING
+INQUIRY 001122334455 "iPhone" 2C0404 -45 dBm
+INQUIRY AABBCCDDEEFF "Galaxy Buds" 2C0404 -62 dBm
+OK
+```
+
+The numbers at the end (like \-45) indicate signal strength in dBm \- closer to 0 means stronger signal. The six-byte hex code (like 2C0404) is the device's Class of Device identifier.
+
+### **Check Connection Status**
+
+Type the following command:
+
+```bash
+STATUS
+```
+
+This tells you if you're connected to any device:
+
+```
+STATE CONNECTABLE[ON] DISCOVERABLE[ON] ADVERTISING[ON] SCAN_UNI[OFF] AUTOCONN[OFF] OPENANY[OFF]
+```
+
+**What These Mean:**
+
+* **CONNECTABLE[ON]** - Other devices can connect to you
+* **DISCOVERABLE[ON]** - Other devices can find you in scans
+* **ADVERTISING[ON]** - Actively broadcasting availability
+* **SCAN_UNI[OFF]** - Unicast scanning (typically off)
+* **AUTOCONN[OFF]** - Automatic connection (typically off)
+* **OPENANY[OFF]** - Accept any connection (typically off for security)
+
+**Well done\!** You've just verified communication, identified your module, and scanned for devices. You're now ready to start using the ATS-BT module.
+
+## 
+
+## 
+
+## **Step 4: Your First Bluetooth Connection**
+
+### **Connect to a Device**
+
+To connect to headphones, earbuds or another device, first put the device into pairing mode and use the INQUIRY 5 command to search for discoverable devices. Then from your scan results, pick a device and connect using its address.
+
+Type the following command:
+
+```bash
+PAIR 001122334455
+```
+
+You'll see:
+
+```
+PENDING
+PAIR_OK 0 001122334455
+```
+
+### **Open a Music stream over A2DP (Classic)**
+
+Type the following command:
+
+```bash
+OPEN 001122334455 A2DP
+```
+
+You'll receive:
+
+```
+PENDING
+OPEN_OK 10 A2DP 001122334455
+OPEN_OK 11 AVRCP 001122334455
+ABS_VOL 11 59
+```
+
+**Understanding Link IDs:** The numbers (10, 11) are Link IDs that identify connections:
+
+* First digit (1): Device number (if multiple devices connected)
+* Second digit (0 - C): Profile type (0=A2DP audio, 1=AVRCP control)
+
+### **Play the Music stream**
+
+Type the following command:
+
+```bash
+MUSIC 10 PLAY
+```
+
+You'll see:
+
+```
+OK
+ABS_VOL 11 59
+A2DP_STREAM_START 10
+```
+
+This command will start music playback for the connected device over A2DP (Advanced Audio Distribution Profile) using the AVRCP (Advanced Audio Distribution Profile) to control the playback.
+
+## **Step 5: BLE Audio Stream**
+
+For BLE Audio (LE Audio), we'll use the SCAN command to search for available BLE devices, then establish a connection and stream.
+
+### **Scan for BLE Devices**
+
+Type the following command to scan for LE Unicast Receivers:
+
+```bash
+SCAN 5 OFF 3
+```
+
+This scans for 5 seconds, filtering for LE Unicast Receivers. You'll see devices like:
+
+```
+PENDING
+SCAN AABBCCDDEEFF "LE Audio Earbuds" -45 dBm
+OK
+```
+
+### **Pair with the BLE Device**
+
+Type the following command using the address from your scan:
+
+```bash
+PAIR AABBCCDDEEFF
+```
+
+You'll see:
+
+```
+PENDING
+PAIR_OK AABBCCDDEEFF
+PAIR_OK_LE AABBCCDDEEFF
+```
+
+Note the "PAIR_OK_LE" confirmation indicating successful LE (Low Energy) pairing.
+
+### **Open BLE Connection**
+
+First, establish the BLE connection:
+
+```bash
+OPEN AABBCCDDEEFF BLE
+```
+
+You'll receive:
+
+```
+PENDING
+OPEN_OK 14 BLE AABBCCDDEEFF
+```
+
+### **Open Unicast Transmit Stream**
+
+Now open the audio stream for unicast transmission:
+
+```bash
+OPEN AABBCCDDEEFF UTXM
+```
+
+You'll see:
+
+```
+PENDING
+OPEN_OK 18 UTXM AABBCCDDEEFF
+LC3_MEDIA_START 18 SOURCE 8 CONTEXT 4
+ABS_VOL 18 136
+```
+
+The LC3_MEDIA_START indicates the LC3 codec is ready for streaming.
+
+### **Start Audio Playback**
+
+Type the following command:
+
+```bash
+MUSIC 18 PLAY
+```
+
+You'll receive:
+
+```
+OK
+```
+
+### **Check Connection Status**
+
+To verify your streaming connection:
+
+```bash
+STATUS
+```
+
+You'll see detailed connection information:
+
+```
+STATE CONNECTABLE[ON] DISCOVERABLE[IDLE] ADVERTISING[ON] SCAN_UNI[OFF] AUTOCONN[OFF] OPENANY[OFF]
+LINK 14 CONNECTED BLE AABBCCDDEEFF MTU 250
+LINK 18 CONNECTED UTXM AABBCCDDEEFF STREAMING LC3 MEDIA SNK_RATE 
+48000 SNK_SDU_INT 10000 SNK_SDU_SIZE 100 SNK_RTN 5 SNK_P_DELAY
+40000 SNK_MAX_LAT 95
+OK
+```
+
+**Understanding the Stream Parameters:**
+* **LC3**: Low Complexity Communication Codec (LE Audio codec)
+* **SNK_RATE 48000**: 48kHz sample rate
+* **SNK_SDU_INT 10000**: 10ms interval between packets
+* **SNK_SDU_SIZE 100**: 100 byte packet size
+* **SNK_RTN 5**: Retransmission count
+* **SNK_MAX_LAT 95**: Maximum latency 95ms
+
+Your BLE Audio stream is now active and transmitting high-quality audio using the LC3 codec!
+
+## **Advanced Terminal Setup**
+
+Once you're comfortable with basic operation, you might want to explore other terminal options or fine-tune your setup.
+
+### **Saving Your Configuration in PuTTY**
+
+Return to PuTTY's configuration window and:
+
+1. Enter your settings (Serial, COM port, 115200 baud)  
+2. Type "ATS-BT" in "Saved Sessions"  
+3. Click "Save"
+
+Next time, just double-click "ATS-BT" from the saved sessions list to connect instantly.
+
+### **AlternativeTerminal: Hercules for Windows**
+
+Hercules allows you to send macros commands, useful for test setups. Install from HW-group.com
+
+![Hercules Terminal](/images/hercules_terminal.png)
+
+
+# Quick Command Guide
+
+<Card title="HELP">
+  Shows all available commands
+
+  **Usage:**
+  ```bash
+  HELP
+  ```
+</Card>
+
+<Card title="CONFIG">
+  Shows current configuration
+
+  **Usage:**
+  ```bash
+  CONFIG
+  ```
+</Card>
+
+<Card title="LIST">
+  List paired devices
+
+  **Usage:**
+  ```bash
+  LIST
+  ```
+</Card>
+
+<Card title="STATUS">
+  Shows bluetooth state and lists active connections
+
+  **Usage:**
+  ```bash
+  STATUS
+  ```
+</Card>
+
+<Card title="INQUIRY">
+  Search for all nearby Bluetooth devices for the designated period of time
+
+  **Parameters:**
+  - `<time>` - Scan duration in seconds
+
+  **Example:**
+  ```bash
+  INQUIRY 5
+  ```
+</Card>
+
+<Card title="SCAN">
+  Search for nearby BLE devices
+
+  **Parameters:**
+  - `<time>` - Scan duration in seconds
+  - `[format]` - OFF (default) or ON (no filter)
+  - `[filter]`:
+    - 0 (no filter)
+    - 2 (Show LE Auracast Broadcasters)
+    - 3 (Show LE Unicast Receivers)
+
+  **Example:**
+  ```bash
+  SCAN 10 OFF 2
+  ```
+</Card>
+
+<Card title="PAIR">
+  Sends a Pair request to a specific device
+
+  **Parameters:**
+  - `<bt_addr>` - Bluetooth address to connect to
+
+  **Example:**
+  ```bash
+  PAIR 001122334455
+  ```
+</Card>
+
+<Card title="UNPAIR">
+  Deletes a device from the pairing list. If used with no parameter deletes all paired devices.
+
+  **Parameters:**
+  - `[bd_addr]` - Bluetooth address to remove from pair list (optional)
+
+  **Examples:**
+  ```bash
+  UNPAIR 001122334455  # Remove specific device
+  UNPAIR               # Remove all paired devices
+  ```
+</Card>
+
+<Card title="OPEN">
+  Sends a connection request to a specific device to open a specific profile
+
+  **Parameters:**
+  - `<bt_addr>` - Bluetooth address of the device
+  - `<profile>` - Profile to open: A2DP, AVRCP, AGHFP, HFP, BLE, SPP, URXM, URXV, UTXM, UTXV, BRX1, BRX2
+
+  **Example:**
+  ```bash
+  OPEN 001122334455 A2DP
+  ```
+</Card>
+
+<Card title="CLOSE">
+  Closes a specific connection
+
+  **Parameters:**
+  - `<link_id>` - Link ID of the connection to close
+
+  **Example:**
+  ```bash
+  CLOSE 10
+  ```
+</Card>
+
