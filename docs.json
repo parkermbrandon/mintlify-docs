@@ -25,6 +25,12 @@
         "tab": "Products",
         "groups": [
           {
+            "group": "ATS System",
+            "pages": [
+              "products/ats/user-manual"
+            ]
+          },
+          {
             "group": "ATS-BT Module",
             "pages": [
               "products/ats-bt/quickstart"
