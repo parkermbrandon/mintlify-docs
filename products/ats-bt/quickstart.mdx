@@ -11,6 +11,13 @@ The ATS-BT (Acoustic Test System \- Bluetooth) module is a Bluetooth communicati
 
 The ATS-BT module features S/PDIF digital IO with connectivity through micro BNC ports. It can run stand-alone and will connect to any S/PDIF capable interface.  
 
+<Info>
+
+The ATS-BT utilizes the IDC777 Bluetooth module from [IOT747](https://www.iot747.com/), providing advanced Bluetooth 5.4 capabilities including LE Audio (LC3 codec with Auracast and Unicast) and Classic Bluetooth with aptX support.
+
+For detailed IDC777 technical specifications and documentation, visit the [IOT747 documentation page](https://www.iot747.com/documents/).
+</Info>
+
 ## **Step 1: Connect Your Hardware**
 
 <div style={{display: 'flex', gap: '10px', marginBottom: '10px'}}>
@@ -240,7 +247,7 @@ This scans for 5 seconds, filtering for LE Unicast Receivers. You'll see devices
 
 ```
 PENDING
-SCAN AABBCCDDEEFF "LE Audio Earbuds" -45 dBm
+SCAN 3 AABBCCDDEEFF 0 0x3 -48
 OK
 ```
 
