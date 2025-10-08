@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Echo Test + Measurement",
+  "name": "Echo Support Center",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
@@ -11,10 +11,10 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Home",
+        "tab": "Support Home",
         "groups": [
           {
-            "group": "Getting Started",
+            "group": "Welcome",
             "pages": [
               "index"
             ]
@@ -22,18 +22,46 @@
         ]
       },
       {
-        "tab": "Products",
+        "tab": "ATS",
         "groups": [
           {
-            "group": "ATS System",
+            "group": "Overview",
             "pages": [
-              "products/ats/user-manual"
+              "ats/index"
             ]
           },
           {
-            "group": "ATS-BT Module",
+            "group": "Documentation",
             "pages": [
-              "products/ats-bt/quickstart"
+              "ats/user-manual"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "ATS-BT",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "ats-bt/index"
+            ]
+          },
+          {
+            "group": "Getting Started",
+            "pages": [
+              "ats-bt/quickstart"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Firmware",
+        "groups": [
+          {
+            "group": "Downloads",
+            "pages": [
+              "firmware/index"
             ]
           }
         ]

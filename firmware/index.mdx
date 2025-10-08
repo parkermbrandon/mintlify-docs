@@ -1,0 +1,178 @@
+---
+title: 'Firmware & Downloads'
+description: 'Latest firmware updates and software downloads for Echo products'
+icon: 'download'
+---
+
+<Warning>
+Always ensure your device is connected to a stable power source before updating firmware. Do not disconnect the device during the update process.
+</Warning>
+
+## ATS Audio Test System
+
+<Card
+  title="ATS Windows Driver"
+  icon="windows"
+  horizontal
+>
+  **Version 2.1.0** - Released January 2025
+
+  Includes:
+  - ASIO driver
+  - Control Panel application
+  - Command-line interface
+  - Latest firmware (v1.5.2)
+
+  [Download (12.5 MB)](https://www.echotm.com/downloads/ats-windows-driver.exe)
+</Card>
+
+<Card
+  title="ATS Firmware Only"
+  icon="microchip"
+  horizontal
+>
+  **Version 1.5.2** - Released January 2025
+
+  Standalone firmware update for ATS systems with existing driver installation.
+
+  [Download (2.3 MB)](https://www.echotm.com/downloads/ats-firmware.bin)
+</Card>
+
+<Card
+  title="ATS macOS Utilities"
+  icon="apple"
+  horizontal
+>
+  **Version 2.0.1** - Released December 2024
+
+  Command-line application and libraries for macOS.
+
+  [Download (5.8 MB)](https://www.echotm.com/downloads/ats-macos.dmg)
+</Card>
+
+## ATS-BT Bluetooth Module
+
+<Card
+  title="ATS-BT Firmware"
+  icon="bluetooth"
+  horizontal
+>
+  **Version 1.2.0** - Released January 2025
+
+  Latest firmware for ATS-BT Bluetooth test module with IDC777.
+
+  Improvements:
+  - Enhanced LE Audio stability
+  - Improved Auracast performance
+  - Updated aptX codec support
+
+  [Download (1.8 MB)](https://www.echotm.com/downloads/ats-bt-firmware.bin)
+</Card>
+
+## Documentation
+
+<Columns cols={2}>
+  <Card
+    title="API Reference"
+    icon="code"
+    href="https://www.echotm.com/downloads/ats-api-reference.pdf"
+  >
+    C library API documentation for programmatic control
+  </Card>
+  <Card
+    title="Command-line Reference"
+    icon="terminal"
+    href="https://www.echotm.com/downloads/ats-cli-reference.pdf"
+  >
+    Complete command-line interface documentation
+  </Card>
+</Columns>
+
+<Columns cols={2}>
+  <Card
+    title="LabVIEW Driver"
+    icon="flask"
+    href="https://www.echotm.com/downloads/ats-labview.zip"
+  >
+    LabVIEW VIs for ATS control and data acquisition
+  </Card>
+  <Card
+    title="MATLAB Examples"
+    icon="chart-line"
+    href="https://www.echotm.com/downloads/ats-matlab-examples.zip"
+  >
+    Sample MATLAB scripts for ATS integration
+  </Card>
+</Columns>
+
+## Update Instructions
+
+### Windows Firmware Update
+
+1. Connect your ATS system via USB
+2. Open the ATS Control Panel
+3. Navigate to the Options tab
+4. Click "Update Firmware"
+5. Select the downloaded firmware file
+6. Wait for the update to complete (approximately 30 seconds)
+7. The system will automatically restart
+
+### ATS-BT Firmware Update
+
+1. Connect the ATS-BT module to your computer
+2. Open a serial terminal (115200 baud)
+3. Send command: `AT+UPDATE`
+4. Follow the on-screen instructions
+5. Transfer the firmware file when prompted
+6. Wait for "Update Complete" message
+7. Send `AT+RESET` to restart the module
+
+## Version History
+
+<Accordion title="ATS Firmware Changelog">
+  **v1.5.2** (January 2025)
+  - Fixed impedance measurement accuracy at high frequencies
+  - Improved TEDS reading reliability
+  - Enhanced USB communication stability
+
+  **v1.5.1** (December 2024)
+  - Added support for 192kHz sample rate
+  - Improved amplifier output protection
+  - Fixed occasional GPIO timing issues
+
+  **v1.5.0** (November 2024)
+  - Major performance improvements
+  - Added loopback routing options
+  - Enhanced word clock synchronization
+</Accordion>
+
+<Accordion title="ATS-BT Firmware Changelog">
+  **v1.2.0** (January 2025)
+  - Enhanced LE Audio codec performance
+  - Improved Bluetooth 5.4 compatibility
+  - Fixed connection stability issues
+
+  **v1.1.5** (December 2024)
+  - Added Auracast broadcast support
+  - Improved aptX latency
+  - Enhanced AT command response time
+
+  **v1.1.0** (November 2024)
+  - Initial release with IDC777 module
+  - Full Bluetooth 5.4 support
+  - LC3 codec implementation
+</Accordion>
+
+## Support
+
+If you encounter any issues with firmware updates or downloads:
+
+- **Email:** support@echotm.com
+- **Phone:** +1 (805) 880-5590
+- **Hours:** Monday-Friday, 9 AM - 5 PM PST
+
+<Info>
+**Automatic Updates**
+
+Enable automatic firmware updates in the ATS Control Panel Options tab to receive notifications when new firmware is available.
+</Info>
