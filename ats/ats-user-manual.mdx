@@ -9,28 +9,28 @@ description: "Complete guide for installation, configuration, and operation of t
 ## Quick Navigation
 
 <CardGroup cols={4}>
-  <Card title="Installation" icon="download" href="#installation">
+  <Card title="Installation" icon="download" href="#2-installation">
     Hardware setup and driver installation
   </Card>
-  <Card title="Control Panel" icon="sliders" href="#ats-control-panel">
+  <Card title="Control Panel" icon="sliders" href="#3-ats-control-panel">
     Software configuration and settings
   </Card>
-  <Card title="Outputs" icon="volume-high" href="#analog-outputs">
+  <Card title="Outputs" icon="volume-high" href="#4-analog-outputs">
     Line, headphone, and amplifier outputs
   </Card>
-  <Card title="Inputs" icon="microphone" href="#analog-inputs">
+  <Card title="Inputs" icon="microphone" href="#5-analog-inputs">
     Microphone inputs and impedance measurement
   </Card>
-  <Card title="Digital I/O" icon="signal" href="#digital-io">
+  <Card title="Digital I/O" icon="signal" href="#6-digital-io">
     S/PDIF and word clock configuration
   </Card>
   <Card title="GPIO" icon="microchip" href="#aux-gpio">
     Auxiliary control connections
   </Card>
-  <Card title="API Control" icon="code" href="#programmatic-control">
+  <Card title="API Control" icon="code" href="#9-programmatic-control">
     Command-line and API documentation
   </Card>
-  <Card title="Support" icon="headset" href="#support">
+  <Card title="Support" icon="headset" href="#10-support">
     Get help and contact information
   </Card>
 </CardGroup>
@@ -90,7 +90,7 @@ Echo ATS combines the functionality of multiple pieces of test equipment into a 
 
 <Steps>
   <Step title="Connect Power">
-    Connect the locking power cable supplied with the ATS to the locking IEC C14 power inlet. Both locking and non-locking cables may be used. The RGB LED on the front panel indicates when power is applied and the ATS is operating.
+    Connect the power cable to the IEC C14 power inlet. Both locking and non-locking cables may be used. The RGB LED on the front panel indicates when power is applied and the ATS is operating.
 
     <Info>
     The universal AC input accepts 90 – 264 VAC at 50 or 60 Hz. The ATS, equipment connected to the ATS, and the test computer must all be connected to the same surge-protected power strip.
@@ -256,15 +256,6 @@ The File menu allows you to open and save sessions. An ATS session stores all th
 Additionally, the ATS command-line application can read session files, so you can fully configure the ATS, save the configuration as a session, and then later load all those settings using a single command-line call.
 
 It is not usually necessary to directly edit the session file, as the easiest way to construct it is simply to set the control panel up as desired and then save the session. It can be, however, be easily edited in a text editor. The format is generally self-explanatory, however it is further described in the ATS Command-line Reference, which may be downloaded from the website.
-
-## Help Menu
-
-The Help menu contains a single item: “About ATS Control Panel”.  The “About” window shows the version number and build date of the currently installed control panel application.
-
-<div style={{textAlign: "center"}}><img src="/images/ats/about.png" alt="ATS Control Panel About" style={{display: "block", maxWidth: "300px", margin: "0 auto"}} /></div>
-
-
-<div style={{textAlign: "center"}}>**Figure 6: ATS "About" window**</div>
 
 # 4. Analog Outputs
 
@@ -533,7 +524,7 @@ Input 4 is not available for loopback as it's dedicated to current monitoring (I
 - Constant current supply (CC)
 - DC coupling control 
 
-# 6. Digital I/O
+# 6. Digital IO
 
 The ATS includes SPDIF digital audio input and output on BNC connectors located on the rear panel. The system provides two input channels and two output channels that can operate simultaneously with the analog I/O.
 
@@ -554,7 +545,7 @@ In the Channels tab, the Digital In and Digital Out sections show real-time leve
 <div style={{textAlign: "center"}}><img src="/images/ats/cc-digital-out.png" alt="Digital Output Tab" style={{display: "block", maxWidth: "550px", margin: "0 auto"}} /></div>
 
 
-The Options tab contains a Digital I/O dropdown menu to select between:
+The Options tab contains a Digital IO dropdown menu to select between:
 
 * SPDIF Mode: Standard digital audio operation  
 * Word Clock Mode: Synchronization input/output
@@ -638,7 +629,7 @@ The ATS LabVIEW driver, which includes a package of Vis for controlling the ATS 
     - 24-bit / 192 kHz
     - 4 Analog Outputs
     - 8 Analog Inputs
-    - S/PDIF Digital I/O
+    - S/PDIF Digital IO
     - GPIO Control
   </Card>
 </CardGroup>
