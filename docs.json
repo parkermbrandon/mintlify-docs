@@ -1,11 +1,11 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "maple",
   "name": "Echo Support Center",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#9A3412",
+    "light": "#EA580C",
+    "dark": "#9A3412"
   },
   "favicon": "/favicon.svg",
   "navigation": {
@@ -99,12 +99,6 @@
       "label": "Products",
       "href": "https://www.echotm.com/products"
     }
-  },
-  "contextual": {
-    "options": [
-     "copy",
-     "view"
-   ]
   },
   "footer": {
     "socials": {
