@@ -33,7 +33,7 @@
           {
             "group": "Documentation",
             "pages": [
-              "ats/user-manual"
+              "ats/ats-user-manual"
             ]
           }
         ]
@@ -51,6 +51,23 @@
             "group": "Getting Started",
             "pages": [
               "ats-bt/quickstart"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "AIO",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "aio/index"
+            ]
+          },
+          {
+            "group": "Documentation",
+            "pages": [
+              "aio/aio-user-manual"
             ]
           }
         ]
