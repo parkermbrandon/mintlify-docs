@@ -69,6 +69,12 @@
             "pages": [
               "aio/aio-user-manual"
             ]
+          },
+          {
+            "group": "Software & Downloads",
+            "pages": [
+              "aio/firmware"
+            ]
           }
         ]
       },

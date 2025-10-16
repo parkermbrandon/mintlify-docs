@@ -1,0 +1,267 @@
+---
+title: 'AIO Software & Downloads'
+description: 'Software installer and firmware updates for the AIO Audio Analyzer'
+icon: 'download'
+---
+
+<Warning>
+Always ensure your AIO device is connected to a stable power source before updating firmware. Do not disconnect the device during the update process.
+</Warning>
+
+## Software Downloads
+
+<Card
+  title="AIO Software Suite"
+  icon="windows"
+  horizontal
+>
+  **Version 4.3.2** - Latest Release
+
+  Complete software package for the AIO Audio Analyzer including:
+  - AIO Control Panel with Direct2D renderer
+  - Windows USB Drivers with ASIO support
+  - Interface Module Firmware
+  - Command Line Interface (CLI)
+  - API Libraries
+  - Updated firmware for all AIO modules
+
+  **System Requirements:**
+  - Windows 10/11 (64-bit)
+  - 4GB RAM minimum (8GB recommended)
+  - 500MB available disk space
+  - USB 2.0 or higher
+
+  <a href="/downloads/aio/SetupEchoAIO_4.3.2.exe" download>
+    **Download Installer** (16 MB)
+  </a>
+</Card>
+
+## Installation Instructions
+
+### First-Time Installation
+
+1. Download the AIO Software Suite installer above
+2. Close all other applications
+3. Run the installer as Administrator (right-click → "Run as administrator")
+4. Follow the installation wizard:
+   - Accept the license agreement
+   - Choose installation directory (default recommended)
+   - Select components to install
+5. Connect your AIO device when prompted
+6. The installer will automatically install USB drivers
+7. Restart your computer when installation completes
+
+### Updating Existing Installation
+
+1. Download the latest installer
+2. The installer will detect your existing installation
+3. Select "Update" when prompted
+4. Your settings and calibration data will be preserved
+5. Restart the AIO software after update completes
+
+## Firmware Updates
+
+The AIO firmware is included with the software installer and can be updated through the AIO Control Software.
+
+### How to Update Firmware
+
+1. Launch the AIO Control Software
+2. Connect your AIO device via USB
+3. Navigate to **Settings → Firmware**
+4. Click "Check for Updates"
+5. If an update is available, click "Update Firmware"
+6. **Do not disconnect** the device during update (typically 30-60 seconds)
+7. The device will restart automatically when complete
+
+### Manual Firmware Update
+
+If automatic update fails, you can update manually:
+
+1. Download the firmware file from the software installation directory:
+   `C:\Program Files\Echo Test & Measurement\AIO\Firmware\`
+2. In AIO Control Software, go to **Settings → Firmware**
+3. Click "Manual Update"
+4. Select the firmware file
+5. Follow the on-screen instructions
+
+## Version History
+
+<Accordion title="Version 4.3.2 (Current Release)">
+  **Software Version 4.3 - Latest Updates**
+
+  ### Interface Module Firmware
+  - Fixed channel names for S and H modules
+  - Support for more module configurations
+  - Fixed issues with AIO-Sv2 and AIO-Lv2 modules initialization
+  - Improved RMS metering
+  - Added enable/disable control for output limiter
+  - Automatically save and restore the audio clock source
+
+  ### Control Panel Application
+  - Added Direct2D renderer for improved performance and appearance
+  - Fixed C module AUX IN not updating
+  - More flexible control layout (vertical channel stack if the window is narrow and tall)
+  - Streamlined meter controls
+
+  ### CLI + API
+  - Complete rework of API + CLI for new command syntax and support for all AIO modules
+</Accordion>
+
+<Accordion title="Version 4.1 Changelog">
+  ### Interface Module Firmware
+  - Automatically load T module firmware
+  - Automatically save and restore T module configuration
+  - Fixed issue with channel labeling for AT & LT configurations
+  - Fixed startup issues with AT & LT configurations
+  - Added support for T1 configuration
+  - Added support for larger future firmware images
+  - Output meters are now calculated before the output calibration scaling
+
+  ### AIO-T Module Firmware
+  - Major firmware rewrite for reliability and timing fixes
+
+  ### Control Panel Application
+  - dBFS meters in RMS mode now read 0 dB for full-scale sine output
+  - Fixed channel naming for units with empty module slots
+  - Fixed restoring the window size and meter modes & units
+  - Fixed TDM incorrect bits per word configuration
+  - Fixed channel layout for AIO-AT and AIO-LT configurations
+  - Changed AIO-S and AIO-H current monitor meters to read in milliamperes
+  - Added decibel ampere meters for AIO-S and AIO-H current monitor
+
+  ### Windows Driver
+  - Add support for Windows 11 22H2
+  - Fix for capturing audio with larger ASIO buffer sizes
+</Accordion>
+
+<Accordion title="Version 4.0.0 Changelog">
+  - Initial release of integrated installer with updated Control Panel and firmware
+  - Unified installation package for all components
+  - Modernized user interface
+  - Enhanced driver compatibility
+</Accordion>
+
+<Accordion title="View Full Changelog">
+  For the complete version history and detailed technical notes, see the [AIO Changelog](/downloads/aio/CHANGELOG.md)
+</Accordion>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Installer won't run">
+    - Ensure you have Administrator privileges
+    - Temporarily disable antivirus software
+    - Check that you have sufficient disk space
+    - Try downloading the installer again
+  </Accordion>
+
+  <Accordion title="USB drivers not installing">
+    - Disconnect and reconnect the AIO device
+    - Try a different USB port
+    - Manually install drivers from:
+      `C:\Program Files\Echo Test & Measurement\AIO\Drivers\`
+    - Check Device Manager for any error indicators
+  </Accordion>
+
+  <Accordion title="Firmware update fails">
+    - Ensure stable power connection
+    - Try a different USB cable
+    - Close all other applications
+    - Use manual firmware update method
+    - Contact support if issue persists
+  </Accordion>
+</AccordionGroup>
+
+## Documentation & Development
+
+<CardGroup cols={2}>
+  <Card
+    title="Release Notes (PDF)"
+    icon="file-pdf"
+    href="/downloads/aio/AIO_Read_Me_4.3_(Windows).pdf"
+  >
+    Official release notes and documentation for version 4.3
+  </Card>
+
+  <Card
+    title="API Documentation"
+    icon="code"
+    href="/aio/api-reference"
+  >
+    Complete API reference for programmatic control
+  </Card>
+
+  <Card
+    title="Example Scripts"
+    icon="file-code"
+    href="/aio/examples"
+  >
+    Sample code in Python, MATLAB, and LabVIEW
+  </Card>
+
+  <Card
+    title="Developer Guide"
+    icon="book"
+    href="/aio/developer-guide"
+  >
+    Integration guide and best practices
+  </Card>
+</CardGroup>
+
+## System Requirements
+
+### Minimum Requirements
+- **OS:** Windows 10 version 1903 or later (64-bit)
+- **Processor:** Intel Core i3 or AMD equivalent
+- **RAM:** 4GB
+- **Storage:** 500MB available space
+- **USB:** USB 2.0 port
+- **Display:** 1280x720 resolution
+
+### Recommended Requirements
+- **OS:** Windows 11 (64-bit)
+- **Processor:** Intel Core i5 or AMD equivalent
+- **RAM:** 8GB or more
+- **Storage:** 1GB available space
+- **USB:** USB 3.0 port or higher
+- **Display:** 1920x1080 resolution or higher
+
+## License Information
+
+The AIO Software Suite is licensed per device. Each AIO hardware unit includes a license for the software on up to 3 computers. For additional licenses or site licenses, please contact sales@echotm.com.
+
+## Support
+
+If you encounter any issues with software installation or firmware updates:
+
+<CardGroup cols={2}>
+  <Card
+    title="Email Support"
+    icon="envelope"
+  >
+    support@echotm.com
+
+    Response within 1 business day
+  </Card>
+
+  <Card
+    title="Phone Support"
+    icon="phone"
+  >
+    +1 (805) 880-5590
+
+    Mon-Fri, 9 AM - 5 PM PST
+  </Card>
+</CardGroup>
+
+<Info>
+**Automatic Updates**
+
+Enable automatic update checks in **Settings → Updates** to be notified when new software versions are available.
+</Info>
+
+<Note>
+**Backup Your Settings**
+
+Before major updates, export your settings and calibration data via **File → Export Settings** to ensure you can restore them if needed.
+</Note>
