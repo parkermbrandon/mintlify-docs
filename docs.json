@@ -52,6 +52,12 @@
             "pages": [
               "ats-bt/quickstart"
             ]
+          },
+          {
+            "group": "Software & Downloads",
+            "pages": [
+              "ats-bt/firmware"
+            ]
           }
         ]
       },
