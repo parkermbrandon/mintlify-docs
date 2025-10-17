@@ -269,9 +269,9 @@ The ATS provides four configurable analog output channels with three distinct op
 
 The output level of each channel is displayed both on a horizontal bar graph and numerically. Use the drop-down control to select the desired units (dBFS, percentage, or voltage).
 
-<Info>
+<Danger>
 **Mode Selection:** On Channels 1 and 2, click **LINE**, **AMP**, or **HP** to change the output mode. Changing the output mode adjusts the relative voltage and phase of the output port.
-</Info>
+</Danger>
 
 ### Output Mode Specifications
 
@@ -392,7 +392,7 @@ Mic/line inputs contain the following additional controls:
 
 **TEDS:** Displays the TEDS (Transducer Electronic Data Sheet) information reported back from the attached microphone, if the microphone supports it. See the TEDS section below for more details.
 
-**Gain:** Sets gain to \+10 db, \+20 db, \+30 db or \+40 db to accommodate a wide range of signal levels.
+**Gain:** Sets gain to \+0 db, \+10 db, \+20 db, \+30 db or \+40 db to accommodate a wide range of signal levels.
 
 **CC:** Toggle the constant current supply (CCP/IEPE/ICP) to power prepolarized measurement microphones.
 
@@ -476,53 +476,6 @@ The current sense resistor is permanently connected in series with the positive 
 
 ![Impedance Measurement Circuit](/images/ats/impedance-circuit.png)
 *Simplified circuit diagram showing VMON and IMON configuration*
-
-
-## Loopback Testing
-
-The ATS includes an internal loopback feature that electronically routes outputs directly to inputs via relays. This enables system verification, self-calibration, and custom test configurations without external cabling.
-
-### Routing Configuration
-
-| Output Channel | Routes to Input(s) |
-| :--- | :--- |
-| Output 1 | Inputs 1 and 3 |
-| Output 2 | Input 2 |
-| Output 3 | Inputs 5 and 7 |
-| Output 4 | Inputs 6 and 8 |
-
-<Note>
-Input 4 is not available for loopback as it's dedicated to current monitoring (IMON) for impedance measurements.
-</Note>
-
-### Setup
-
-<Steps>
-  <Step title="Open Control Panel">
-    Navigate to the Channels tab in the ATS Control Panel
-  </Step>
-  <Step title="Select Input">
-    In the Analog In section, locate the input channel you want to configure
-  </Step>
-  <Step title="Enable Loopback">
-    Select "Loopback" from the dropdown menu for that input
-  </Step>
-  <Step title="Verify Routing">
-    The corresponding output automatically routes to the selected input channel
-  </Step>
-</Steps>
-
-### Operating Characteristics
-
-**Compatible with all output modes:** LINE, HP, and AMP
-
-**Available controls in loopback mode:**
-- Input gain adjustment (+10dB, +20dB, +30dB, +40dB)
-- TEDS information reading
-
-**Disabled features during loopback:**
-- Constant current supply (CC)
-- DC coupling control 
 
 # 6. Digital IO
 
