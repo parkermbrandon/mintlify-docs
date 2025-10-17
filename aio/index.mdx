@@ -15,65 +15,25 @@ icon: 'gauge-high'
 
 ## Key Features
 
-<Columns cols={3}>
+<Columns cols={2}>
   <Card title="Modular Design" icon="puzzle-piece">
     Flexible configuration with interchangeable modules for acoustic, line, headphone, speaker, and TDM testing
   </Card>
   <Card title="Advanced Measurements" icon="chart-line">
-    Real-time impedance measurement, TEDS support, and environmental monitoring capabilities
-  </Card>
-  <Card title="Comprehensive Control" icon="microchip">
-    GPIO control, battery simulation, and integrated pressure/temperature/humidity sensors
+    Real-time impedance measurement, TEDS support
   </Card>
 </Columns>
 
 ## Module Types
 
-<Columns cols={2}>
-  <Card title="Audio Modules">
-    - **AIO-A:** Acoustic test module with 4 inputs/2 outputs
-    - **AIO-H:** Headphone test with impedance measurement
-    - **AIO-L:** Balanced line-level I/O
-    - **AIO-S:** Speaker test with amplifier outputs
-  </Card>
-  <Card title="Control & Digital">
-    - **AIO-C:** GPIO, power supplies, environmental sensors
-    - **AIO-T:** TDM digital interface (up to 10 channels)
-  </Card>
-</Columns>
 
-## Technical Specifications
-
-<Columns cols={2}>
-  <Card title="Analog Performance">
-    - Dynamic range up to 120 dB
-    - THD+N < -105 dB
-    - Frequency response ±0.01 dB (10 Hz - 22 kHz)
-    - Multiple gain settings (1x, 10x, 100x)
-    - CCP/IEPE microphone power
-  </Card>
-  <Card title="Digital Features">
-    - TDM support (2/4/8/10 channels)
-    - Sample rates: 44.1k, 48k, 96k, 192k
-    - ASIO and WASAPI driver support
-    - USB 2.0 high-speed interface
-    - Clock master/slave modes
-  </Card>
-</Columns>
-
-## Special Features
-
-<Columns cols={3}>
-  <Card title="Battery Simulation" icon="battery-half">
-    Variable 0.6-5V DC supply with current measurement for testing portable devices
-  </Card>
-  <Card title="Environmental Monitoring" icon="temperature-half">
-    Built-in sensors for temperature, humidity, and barometric pressure baseline measurements
-  </Card>
-  <Card title="Fixture Control" icon="toggle-on">
-    8x8 GPIO for automated test fixture control and pass/fail indication
-  </Card>
-</Columns>
+<Card title="Audio Modules">
+  - **AIO-A:** Acoustic test module with 4 inputs/2 outputs
+  - **AIO-H:** Headphone test with impedance measurement
+  - **AIO-L:** Balanced line-level I/O
+  - **AIO-S:** Speaker test with amplifier outputs
+  - **AIO-T:** TDM digital interface (up to 10 channels)
+</Card>
 
 ## Common Configurations
 
@@ -133,17 +93,6 @@ icon: 'gauge-high'
   Command-line reference, C library API, and LabVIEW drivers for programmatic control.
 </Card>
 
-<Card
-  title="Scaling Factors"
-  icon="calculator"
-  horizontal
->
-  **Important for 3rd party software:** Proper scaling factors must be configured in your test software:
-  - Line outputs: 8.0 V/FS (unbalanced), 16.0 V/FS (balanced)
-  - Headphone outputs: 3.0 V/FS
-  - Amplifier outputs: 9.545 V/FS
-  - Mic/Line inputs: 161.6 mFS/V
-</Card>
 
 ## Support
 
