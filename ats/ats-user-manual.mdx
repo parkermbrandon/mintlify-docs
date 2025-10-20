@@ -390,15 +390,13 @@ Input channels are similarly shown on the right side of the Channels tab. The in
 
 Mic/line inputs contain the following additional controls:
 
-**TEDS:** Displays the TEDS (Transducer Electronic Data Sheet) information reported back from the attached microphone, if the microphone supports it. See the TEDS section below for more details.
-
 **Gain:** Sets gain to \+0 db, \+10 db, \+20 db, \+30 db or \+40 db to accommodate a wide range of signal levels.
+
+**TEDS:** Displays the TEDS (Transducer Electronic Data Sheet) information reported back from the attached microphone, if the microphone supports it. See the TEDS section below for more details.
 
 **CC:** Toggle the constant current supply (CCP/IEPE/ICP) to power prepolarized measurement microphones.
 
 **DC:** Toggle DC coupling
-
-**MIC/LINE \- Loopback \- Impedance:**  Input channel 1 and 2 can be set to Mic/Line input or Loopback. Channel 2 through 8 can be used to measure impedance of the DUT. See section below for more details.
 
 Click the caret to expand or condense the channel display for each module type. In the condensed view, only the bar-graphs are visible.
 
@@ -421,7 +419,7 @@ Sensitivity is displayed by default in units of Volt/Pascal. Some audio test sof
 
 ## Impedance Measurement
 
-The ATS provides real-time impedance measurement capability for characterizing speakers, headphones, drivers, and other loads across different frequencies. This feature works in any output mode (LINE, HP, or AMP) using Output 1.
+The ATS provides real-time impedance measurement capability for characterizing speakers, headphones, drivers, and other loads across different frequencies. This feature works in either LINE and AMP output modes using Output 1.
 
 ### How It Works
 
@@ -529,29 +527,7 @@ The ATS features 4 TTL level inputs and 4 open drain TTL level outputs capable o
 </div>
 </div>
 
-# 9. Programmatic Control
-
-## Command-line Application
-
-The command-line application is primarily used for configuring an ATS test system from another application. This is especially useful if you want to automate setting up your ATS as part of your test sequence.
-
-The ATS command-line app can also be used to control your ATS from the Windows command prompt or macOS terminal.
-
-On Windows, the command-line application is installed when you install the Echo ATS Driver.
-
-On macOS, no driver installation is necessary. Just copy the command-line application and the required EchoATSInterface.dylib library to a folder on your hard drive.
-
-Documentation of the command-line calls is available in a separate document, the ATS Command-line Reference, which may be downloaded from the Echo Test+Measurement website.
-
-## API
-
-ATS includes a C library dll which makes it possible to control the ATS test system from a variety from your own code. For documentation, refer to the ATS API Reference: https://github.com/mattgonzalez/EchoAIOExample/.
-
-## LabVIEW Driver
-
-The ATS LabVIEW driver, which includes a package of Vis for controlling the ATS and retrieving data, is available for download from the Echo Test+Measurement website.
-
-# 10. Support
+# 9. Support
 
 ## Quick Reference
 
