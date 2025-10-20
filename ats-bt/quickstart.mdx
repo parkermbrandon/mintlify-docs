@@ -401,7 +401,7 @@ Now let's verify your module is working correctly. Commands are case-insensitive
       <Step title="Start Audio Playback">
         <CodeGroup>
           ```bash Command
-          MUSIC 10 PLAY
+          MUSIC 11 PLAY
           ```
 
           ```text Response
@@ -417,9 +417,9 @@ Now let's verify your module is working correctly. Commands are case-insensitive
 
     | Command | Description | Example |
     | :--- | :--- | :--- |
-    | MUSIC \<id\> PLAY | Start playback | `MUSIC 10 PLAY` |
-    | MUSIC \<id\> PAUSE | Pause playback | `MUSIC 10 PAUSE` |
-    | MUSIC \<id\> STOP | Stop playback | `MUSIC 10 STOP` |
+    | MUSIC \<id\> PLAY | Start playback | `MUSIC 11 PLAY` |
+    | MUSIC \<id\> PAUSE | Pause playback | `MUSIC 11 PAUSE` |
+    | MUSIC \<id\> STOP | Stop playback | `MUSIC 11 STOP` |
     | VOLUME \<id\> \<level\> | Set volume (0-127) | `VOLUME 11 64` |
   </Tab>
 
@@ -731,99 +731,6 @@ Now let's verify your module is working correctly. Commands are case-insensitive
         ```
       </Card>
     </CardGroup>
-  </Accordion>
-</AccordionGroup>
-
-## Troubleshooting
-
-<AccordionGroup>
-  <Accordion title="Connection Issues">
-    ### Module Not Detected
-
-    **Problem:** Computer doesn't recognize the ATS-BT module
-
-    **Solutions:**
-    - Check USB-C cable is fully inserted
-    - Try a different USB port
-    - Verify LED shows power (white or blinking)
-    - Install USB serial drivers if needed
-
-    ### Wrong COM Port or Device Path
-
-    **Problem:** Can't find the correct serial port
-
-    **Solutions:**
-    - **Windows:** Check Device Manager → Ports (COM & LPT)
-    - **macOS:** Run `ls /dev/tty.usb*`
-    - **Linux:** Run `ls /dev/ttyUSB*`
-    - Disconnect and reconnect to see which port appears
-  </Accordion>
-
-  <Accordion title="Pairing Problems">
-    ### Device Won't Pair
-
-    **Problem:** PAIR command fails or times out
-
-    **Solutions:**
-    - Ensure target device is in pairing mode
-    - Check device is discoverable with `INQUIRY` or `SCAN`
-    - Try `UNPAIR` first to clear old pairing
-    - Verify correct Bluetooth address
-    - Check signal strength (should be > -80 dBm)
-
-    ### Paired but Won't Connect
-
-    **Problem:** OPEN command fails after successful pairing
-
-    **Solutions:**
-    - Verify correct profile support (A2DP, BLE, etc.)
-    - Check device compatibility
-    - Try closing other connections first
-    - Reset module with power cycle
-  </Accordion>
-
-  <Accordion title="Audio Streaming">
-    ### No Audio Output
-
-    **Problem:** Connection established but no audio
-
-    **Solutions:**
-    - Verify S/PDIF connections (TX to RX swap)
-    - Check `MUSIC <id> PLAY` command was sent
-    - Confirm volume level with `VOLUME <id> <level>`
-    - Verify stream status with `STATUS`
-    - Check ATS or audio interface settings
-
-    ### Audio Dropouts
-
-    **Problem:** Intermittent audio or poor quality
-
-    **Solutions:**
-    - Move devices closer (improve RSSI)
-    - Reduce interference from other devices
-    - Check USB power stability
-    - Verify S/PDIF cable quality
-    - Update firmware if available
-  </Accordion>
-
-  <Accordion title="Command Errors">
-    ### Commands Not Responding
-
-    **Problem:** No response to typed commands
-
-    **Solutions:**
-    - Check terminal baud rate is 115200
-    - Enable local echo in terminal settings
-    - Verify proper line endings (CR+LF)
-    - Try `VERSION` as a test command
-
-    ### ERROR Responses
-
-    **Common error causes:**
-    - **Invalid syntax:** Check command format
-    - **Wrong parameters:** Verify address format
-    - **Device busy:** Wait for PENDING to clear
-    - **Not connected:** Establish connection first
   </Accordion>
 </AccordionGroup>
 
