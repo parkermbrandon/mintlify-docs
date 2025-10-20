@@ -255,7 +255,7 @@ The File menu allows you to open and save sessions. An ATS session stores all th
 
 Additionally, the ATS command-line application can read session files, so you can fully configure the ATS, save the configuration as a session, and then later load all those settings using a single command-line call.
 
-It is not usually necessary to directly edit the session file, as the easiest way to construct it is simply to set the control panel up as desired and then save the session. It can be, however, be easily edited in a text editor. The format is generally self-explanatory, however it is further described in the ATS Command-line Reference, which may be downloaded from the website.
+It is not usually necessary to directly edit the session file, as the easiest way to construct it is simply to set the control panel up as desired and then save the session. It can be, however, be easily edited in a text editor.
 
 # 4. Analog Outputs
 
@@ -432,10 +432,10 @@ The impedance measurement system uses a four-wire (Kelvin) measurement technique
     Input 3 measures the voltage directly at the output terminals
   </Step>
   <Step title="Current Monitoring (IMON)">
-    Input 4 measures current through a built-in 0.1Ω precision sense resistor (two 0.2Ω 5% resistors in parallel)
+    Input 4 measures current through a built-in 0.1Ω precision sense resistor
   </Step>
-  <Step title="Real-time Calculation">
-    The system calculates impedance using Ohm's law: Z = V/I
+  <Step title="Impedance Calculation">
+     The impedance can be calculated using Ohm's law: Z = V/I
   </Step>
 </Steps>
 
@@ -450,25 +450,18 @@ The current sense resistor is permanently connected in series with the positive 
     Connect your device under test to Output 1 using the three-pin connector (+, -, and ground as needed)
   </Step>
   <Step title="Open Control Panel">
-    Navigate to the Channels tab in the ATS Control Panel
+    Navigate to the Options tab in the ATS Control Panel
   </Step>
   <Step title="Enable Impedance Mode">
-    In the Analog In section, select "Impedance" from the dropdown for Inputs 3 or 4
+    In the Device section, click the **Impedance Enable** checkbox to activate impedance measurement
   </Step>
   <Step title="Verify Configuration">
     When impedance mode is active:
     - Input 3 switches to VMON (Voltage Monitor)
     - Input 4 switches to IMON (Current Monitor)
-    - Both ADC channels are dedicated to impedance measurement
-  </Step>
+    - Both ADC channels are dedicated to impedance measurement in this mode
+   </Step>
 </Steps>
-
-### Specifications
-
-| Output Type | Measurement Accuracy | Frequency Range |
-| :--- | :--- | :--- |
-| Headphone outputs | ≤ 1% | 20 Hz – 20 kHz |
-| Amplifier/Speaker outputs | ≤ 0.5% | 20 Hz – 20 kHz |
 
 <Info>
 **Limitations:** Impedance measurement is currently available only on Output 1. When not in impedance mode, Inputs 3 and 4 function as standard Mic/Line inputs.
@@ -552,7 +545,7 @@ Documentation of the command-line calls is available in a separate document, the
 
 ## API
 
-ATS includes a C library dll which makes it possible to control the ATS test system from a variety from your own code. For documentation, refer to the ATS API Reference, which may be downloaded from the Echo Test+Measurement website.
+ATS includes a C library dll which makes it possible to control the ATS test system from a variety from your own code. For documentation, refer to the ATS API Reference: https://github.com/mattgonzalez/EchoAIOExample/.
 
 ## LabVIEW Driver
 

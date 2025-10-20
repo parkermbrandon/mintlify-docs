@@ -116,19 +116,6 @@
     "dark": "/logo/dark.svg",
     "href": "https://www.echotm.com"
   },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:support@echotm.com"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Products",
-      "href": "https://www.echotm.com/products"
-    }
-  },
   "footer": {
     "socials": {
       "github": "https://github.com/echo-test-measurement",
