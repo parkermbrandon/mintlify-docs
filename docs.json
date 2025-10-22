@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "maple",
   "name": "Echo Support Center",
   "colors": {
     "primary": "#9A3412",
@@ -80,17 +80,6 @@
             "group": "Software & Downloads",
             "pages": [
               "aio/firmware"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Firmware",
-        "groups": [
-          {
-            "group": "Downloads",
-            "pages": [
-              "firmware/index"
             ]
           }
         ]
