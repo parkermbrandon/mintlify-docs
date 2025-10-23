@@ -1,0 +1,22 @@
+# Treat executables and installers as binary files
+*.exe binary
+*.msi binary
+*.dll binary
+*.so binary
+
+# Treat compressed files as binary
+*.zip binary
+*.gz binary
+*.tar binary
+*.7z binary
+*.rar binary
+
+# Treat package files as binary
+*.deb binary
+*.rpm binary
+*.dmg binary
+*.pkg binary
+
+# Ensure other binary formats are handled correctly
+*.pdf binary
+*.bin binary
