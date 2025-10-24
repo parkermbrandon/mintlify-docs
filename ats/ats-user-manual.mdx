@@ -289,17 +289,19 @@ The output level of each channel is displayed both on a horizontal bar graph and
 
     The AMP mode is designed for making acoustic measurements of speakers, drivers, and other acoustic transducers. This mode provides floating differential outputs with sufficient power to drive speakers directly.
 
-    **Applications:**
+  <Accordion title="Applications" icon="speaker">
     - Speaker and driver testing
     - Measurement microphones
     - Ear simulators and artificial heads
     - Actuators and mouth simulators
+  </Accordion>
 
-    **Technical Specifications:**
+  <Accordion title="Technical Specifications" icon="info-circle">
     - Configuration: Floating differential
     - DC Bias: 7.5V on both (+) and (-) terminals
     - Maximum Output: 12.4Vpp
-    - Available on: Channels 1-4 (Channels 3-4 are AMP only)
+    - Available on: Channels 1-4 (Channels 3-4 are AMP only)y
+  </Accordion>
 
     <Warning>
     **Important:** Amplifier outputs are floating and not ground-referenced. Do NOT connect the ground terminal or create any low-impedance path from outputs to ground - this will cause the amplifier to shut down. The amplifier will reset automatically after the fault is removed.
@@ -317,18 +319,20 @@ The output level of each channel is displayed both on a horizontal bar graph and
 
     The HP mode is optimized for testing wired headphones, headsets, earbuds, and hearing protection devices. This mode provides single-ended outputs with a shared ground, ideal for stereo headphone testing.
 
-    **Applications:**
+  <Accordion title="Applications" icon="headphones">
     - Headphone and earbud testing
     - Headset acoustic measurements
     - Hearing protection device testing
     - Impedance measurements
+  </Accordion>
 
-    **Technical Specifications:**
+  <Accordion title="Technical Specifications" icon="info-circle">
     - Configuration: Single-ended
     - DC Offset: 0V
     - Maximum Output: 8.5Vpp
     - Ground: Required (shared between channels)
     - Available on: Channels 1-2 only
+  </Accordion>
 
     <Info>
     The HP mode automatically configures the outputs for proper left/right channel separation with a common ground, matching standard headphone wiring conventions.
@@ -345,19 +349,21 @@ The output level of each channel is displayed both on a horizontal bar graph and
     ### Line-Level Outputs
 
     The LINE mode provides balanced outputs for interfacing with professional audio equipment and making electrical measurements. This mode offers the highest voltage output and excellent noise rejection through balanced connections.
-
-    **Applications:**
+  
+  <Accordion title="Applications" icon="plug">
     - Professional audio equipment testing
     - Balanced line connections
     - Single-ended connections (using + and ground only)
     - Ground-isolated measurements
+  </Accordion>
 
-    **Technical Specifications:**
+  <Accordion title="Technical Specifications" icon="info-circle">
     - Configuration: Balanced differential
     - DC Offset: 0V
     - Maximum Output: 22.6Vpp (balanced), 11.3Vpp (unbalanced)
     - Ground: Optional
     - Available on: Channels 1-2 only
+  </Accordion>
 
     <Note>
     For single-ended (unbalanced) connections, connect to the + and ground terminals, leaving the - terminal unconnected.
