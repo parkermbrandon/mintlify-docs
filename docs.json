@@ -35,6 +35,12 @@
             "pages": [
               "ats/ats-user-manual"
             ]
+          },
+          {
+            "group": "Software & Downloads",
+            "pages": [
+              "ats/firmware"
+            ]
           }
         ]
       },
