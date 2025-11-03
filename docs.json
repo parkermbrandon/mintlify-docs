@@ -3,9 +3,9 @@
   "theme": "maple",
   "name": "Echo Support Center",
   "colors": {
-    "primary": "#9A3412",
+    "primary": "#9A1D12",
     "light": "#EA580C",
-    "dark": "#9A3412"
+    "dark": "#9A1D12"
   },
   "favicon": "/favicon.svg",
   "navigation": {
