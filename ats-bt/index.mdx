@@ -13,24 +13,85 @@ icon: 'bluetooth'
   Get started quickly with step-by-step instructions for setup and basic operation.
 </Card>
 
-## Key Features
+## Overview
 
-<Columns cols={3}>
-  <Card title="Bluetooth 5.4" icon="bluetooth">
-    Latest Bluetooth technology with LE Audio and Classic Bluetooth support
-  </Card>
-  <Card title="LC3 Codec" icon="music">
-    Advanced LC3 codec support with Auracast and Unicast capabilities
-  </Card>
-  <Card title="aptX Support" icon="headphones">
-    High-quality aptX codec for Classic Bluetooth audio streaming
-  </Card>
-</Columns>
+The Echo ATS-BT is a high-performance Bluetooth 5.4 audio and data module designed to seamlessly integrate with the Echo ATS (Acoustic Test System). Featuring the advanced IDC777-1 module from IOT747, the ATS-BT provides comprehensive Bluetooth functionality for testing and measurement applications, supporting both Classic and LE Audio protocols.
+
+The ATS-BT is ideal for developers who want to quickly and cost-effectively integrate high-performance Audio and Data Bluetooth functionality into their testing workflows. It supports multiple device connections with multiple profiles, including the new LE Audio Unicast and Auracast (Broadcast) technologies. With ultra-low latency (20ms) for Unicast and the ability to transmit 4 independent Auracast audio streams, the ATS-BT delivers professional-grade Bluetooth testing capabilities.
+
+The module integrates with the ATS system via SPDIF digital audio connection, providing seamless audio routing for comprehensive acoustic testing scenarios.
+
+![ATS-BT Module](/images/ats-bt/ats-bt-module.jpg)
+
+## Technical Specifications
+
+### Form Factor & Connectivity
+
+- **Size:** 11.8mm × 22.2mm × 3.2mm
+- **Weight:** 1g
+- **Interfaces:** UART, GPIO, USB, I2S, PCM, I2C, SPDIF
+- **Antenna:** Integrated chip antenna
+
+### Bluetooth Specifications
+
+- **Bluetooth Standard:** Bluetooth 5.4
+- **Frequency Band:** 2,402 MHz to 2,480 MHz
+- **Modulation:** 8 DPSK, PI/4 DQPSK, GFSK
+- **Maximum Data Rate:** 3Mbps (typical 1.6Mbps)
+- **Operating Range:** 25m
+- **RF Sensitivity:** 0.1% BER at -97dBm (Typical)
+- **Transmit Power:** Max 9dBm
+
+### Supported Profiles & Features
+
+- **Classic Bluetooth Profiles:** HFP, HSP, AG-HFP, A2DP Sink, A2DP Source, AVRCP, SPP, HID
+- **LE Audio:** Unicast and Auracast (Transmit and Receive)
+- **Ultra Low Latency:** 20ms Unicast
+- **Auracast Capability:** Transmit 4 independent audio streams
+- **Concurrent:** BLE and Classic Bluetooth operation
+- **Multiple Connections:** Receiver or Transmitter modes
+
+### Audio Features
+
+- **Digital Audio:** SPDIF interface
+- **Classic Codecs:** Snapdragon Sound (aptX, aptX HD, aptX Lossless), AAC, SBC
+- **LE Audio Codec:** LC3
+- **Speech:** Ultra and Super Wide Band Speech
+- **Echo Cancellation:** Bluetooth, Wired, and USB
+- **DAC Resolution:** 16 bits
+- **DAC Sample Rate:** 8 KHz to 90 KHz
+- **DAC SNR:** Class D typ: 105.1dB, Class A-B typ: 103.9 dB
+- **Stereo Separation:** Min: 80dB
+
+### Power Requirements
+
+- **Supply Voltage:** 3.3V to 4.7V DC (Supports Li-Ion battery voltage range)
+- **Streaming Current:** 5mA (Music streaming)
+- **Idle Current:** <1mA (Connectable)
+- **Discoverable Current:** <1mA (Pairing Mode)
+
+### Operating Conditions
+
+- **Operating Temperature:** -40°C to 85°C
+- **Storage Temperature:** -40°C to 105°C
+
+### Certifications
+
+- Bluetooth SIG Certified
+- FCC (United States)
+- RED (Europe)
+- MIC (Japan)
+- KCC (South Korea)
+- SRRC (China)
+
+<Note>
+**Audio Configuration:** The ATS-BT integrates with the Echo ATS system via SPDIF digital audio interface, providing high-quality digital audio connectivity for professional acoustic testing applications.
+</Note>
 
 ## Module Attribution
 
 <Info>
-The ATS-BT utilizes the IDC777 Bluetooth module from [IOT747](https://www.iot747.com/), providing advanced Bluetooth 5.4 capabilities including LE Audio (LC3 codec with Auracast and Unicast) and Classic Bluetooth with aptX support.
+The ATS-BT utilizes the IDC777-1 Bluetooth module from [IOT747](https://www.iot747.com/), providing advanced Bluetooth 5.4 capabilities including LE Audio (LC3 codec with Auracast and Unicast) and Classic Bluetooth with Snapdragon Sound (aptX, aptX HD, aptX Lossless) support.
 
 For detailed IDC777 technical specifications and documentation, visit the [IOT747 documentation page](https://www.iot747.com/documents/).
 </Info>
