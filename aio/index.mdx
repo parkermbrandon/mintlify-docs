@@ -1,6 +1,6 @@
 ---
-title: 'AIO - Acoustic Input Output - Test System'
-description: 'Modular USB 2.0 audio test platform for comprehensive acoustic, electrical, and digital audio testing'
+title: 'AIO Test System'
+description: 'Modular audio test platform for high-volume production line testing and QA/QC verification'
 icon: 'gauge-high'
 ---
 
@@ -13,27 +13,157 @@ icon: 'gauge-high'
   Complete user guide covering installation, configuration, operation, and specifications of the AIO system.
 </Card>
 
-## Key Features
+## Overview
 
-<Columns cols={2}>
-  <Card title="Modular Design" icon="puzzle-piece">
-    Flexible configuration with interchangeable modules for acoustic, line, headphone, speaker, and TDM testing
-  </Card>
-  <Card title="Advanced Measurements" icon="chart-line">
-    Real-time impedance measurement, TEDS support
-  </Card>
-</Columns>
+The Echo AIO™ test system is a modular audio test platform ideally suited for high-volume production line testing and QA/QC verification. The AIO combines the functionality of multiple standalone devices into a single, integrated unit, making test stations both more reliable and less expensive.
 
-## Module Types
+The AIO Test System features a modular design consisting of an AIO Chassis, an AIO Interface Module, and one or two test modules, providing flexible configuration options to meet diverse testing requirements.
 
+## Features
 
-<Card title="Audio Modules">
-  - **AIO-A:** Acoustic test module with 4 inputs/2 outputs
-  - **AIO-H:** Headphone test with impedance measurement
-  - **AIO-L:** Balanced line-level I/O
-  - **AIO-S:** Speaker test with amplifier outputs
-  - **AIO-T:** TDM digital interface (up to 10 channels)
-</Card>
+- **High accuracy** - Professional-grade measurements for production environments
+- **Cost effective** - Integrated design reduces equipment costs
+- **Silent operation** - Fanless design for quiet test environments
+- **Standard USB 2.0 audio class interface** - Universal compatibility
+- **Wide test & measurement software compatibility** - Works with industry-standard applications
+- **Cross-platform support** - Runs on Windows (10 or later) or macOS
+- **Multiple audio protocols** - ASIO, WASAPI, & Core Audio support
+
+## Applications
+
+- Speakers & headphones
+- Mobile devices
+- Car audio
+- Microphones
+- Analog and digital audio
+- And more...
+
+## Test Modules
+
+The AIO system supports various test modules for different applications:
+
+### A - Acoustic Module
+Four mic/line inputs with CCP, TEDS; two 10 W class-D amplifier outputs. Ideal for comprehensive acoustic testing applications.
+
+### L - Line-level Module
+Four mic/line inputs with CCP, TEDS; two balanced line-level outputs. Perfect for professional audio equipment testing.
+
+### S - Speaker Module
+Two mic/line inputs with CCP, TEDS; two 10 W class-D amplifier outputs; built-in speaker impedance measurement. Specialized for speaker testing and characterization.
+
+### H - Headphone Module
+Two mic/line inputs with CCP, TEDS; two headphone/earbud outputs with impedance measurement. Designed for headphone and earbud testing.
+
+### T - TDM Module
+Digital TDM interface supporting up to 10 channels with 24 or 32 bit samples. Enables digital audio interface testing.
+
+## Technical Specifications
+
+<AccordionGroup>
+  <Accordion title="Microphone / Line Inputs">
+    - **Input impedance:** 1 MΩ
+    - **Input coupling:** AC
+    - **Input gain:** 1x, 10x, and 100x
+    - **Voltage, full scale (1x gain):** 8.75 Vpk (+15.8 dBV)
+    - **Frequency response:**
+      - ±0.01 dB (10 Hz – 22 kHz) (48k SR)
+      - ±0.01 dB (10 Hz – 44 kHz) (96k SR)
+      - ±1 dB (10 Hz – 86 kHz) (192k SR)
+    - **Input bandwidth (-3 dB @ 192k SR):** 94 kHz
+    - **Dynamic range (20 kHz BW):** 112 dB
+    - **THD+N (1x gain, 20 kHz BW):** &lt; -105 dB (20 Hz – 20 kHz)
+    - **Constant current supply:** CCP/IEPE/ICP, 4 mA
+    - **TEDS reader:** IEEE 1451.4 Class 1
+  </Accordion>
+
+  <Accordion title="Line Outputs">
+    - **Output coupling:** DC
+    - **Voltage, maximum:**
+      - 16 Vrms (+24 dBV) (balanced)
+      - 8 Vrms (+18 dBV) (unbalanced)
+    - **Frequency response:**
+      - ±0.01 dB (10 Hz – 21 kHz) (48k SR)
+      - ±0.01 dB (10 Hz – 43 kHz) (96k SR)
+      - ±1 dB (10 Hz – 75 kHz) (192k SR)
+    - **Output bandwidth (-3 dB @ 192k SR):** 90 kHz
+    - **Dynamic range (20 kHz BW):** 120 dB
+    - **THD+N (20 kHz BW):** &lt; -102 dB (20 Hz – 20 kHz)
+  </Accordion>
+
+  <Accordion title="Amplifier / Speaker Outputs">
+    - **Output coupling:** AC
+    - **Load, minimum:** 4 Ω
+    - **Voltage, full scale:** 9.475 Vrms (8 Ω load)
+    - **Power output (20 Hz – 20 kHz, all channels driven):**
+      - 10 W @ &lt;0.2% THD+N (8 Ω load)
+      - 6 W @ &lt;0.3% THD+N (4 Ω load)
+    - **Frequency response:** ±0.2 dB (10 Hz – 20 kHz) (8 Ω load)
+    - **Output bandwidth (-3 dB @ 192k SR):** 44 kHz
+    - **Dynamic range (20 kHz BW):** 100 dB
+    - **Impedance measurement accuracy:** ≤ 0.5% (20 Hz – 20 kHz)
+  </Accordion>
+
+  <Accordion title="Headphone Outputs">
+    - **Output coupling:** DC
+    - **Load, minimum:** 16 Ω
+    - **Voltage, maximum:** 3 Vrms (+9.5 dBV) (≥ 32 Ω load)
+    - **Current, maximum:** 125 mA
+    - **Power output (20 Hz – 20 kHz, all channels driven):**
+      - 281 mW @ &lt; 0.0016% THD+N (32 Ω)
+      - 250 mW @ &lt; 0.0019% THD+N (16 Ω)
+    - **Frequency response:**
+      - ±0.01 dB (10 Hz – 21 kHz) (48k SR)
+      - ±0.01 dB (10 Hz – 43 kHz) (96k SR)
+      - ±1 dB (10 Hz – 75 kHz) (192k SR)
+    - **Output bandwidth (-3 dB @ 192k SR):** 89 kHz
+    - **Dynamic range (20 kHz BW):** 120 dB
+    - **Impedance measurement accuracy:** ≤ 1% (20 Hz – 20 kHz)
+  </Accordion>
+
+  <Accordion title="TDM Specifications">
+    - **Channels:** 2, 4, 8, or 10
+    - **Clock source:** Internal or external
+    - **Bits per frame:** 64, 128, or 256
+    - **Bits per sample:** 24 or 32
+    - **Frame sync width:** 1 – 128 bits
+    - **Frame sync position:** Bit 0 – 255
+    - **Sample rate:** 44.1k, 48k
+  </Accordion>
+
+  <Accordion title="General Specifications">
+    - **Power:** 90 – 264 VAC, 50/60 Hz, 60 W
+    - **Dimensions:** 17.5" (44.4 cm) × 8.75" (22.2 cm) × 1.75" (4.4 cm)
+    - **Weight:** 42.5 lbs (19.3 kg)
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+See individual module datasheets for complete specifications.
+</Note>
+
+## Software
+
+### Test & Measurement Software
+
+The AIO system works with a wide variety of third-party test and measurement software, including:
+
+- **APx500 Flex** - Audio Precision analysis software
+- **ARTA** - Audio measurement and analysis
+- **LabVIEW** - Custom test automation
+- **MATLAB** - Advanced signal processing
+
+The AIO system works just like a standard sound card for Windows, Mac, or Linux.
+
+### Control Panel Software
+
+The AIO Control Panel provides comprehensive level monitoring and control over hardware settings, including:
+
+- Transducer power management
+- TEDS data configuration
+- Gain control
+- TDM format settings
+- Calibration
+- Command-line and API access to settings
 
 ## Software & Drivers
 
@@ -71,20 +201,19 @@ icon: 'gauge-high'
   href="/aio/firmware#technical-datasheets"
   horizontal
 >
-  Access detailed specifications for the AIO system and all available modules (A, H, L, S, T, and C modules).
+  Access detailed specifications for the AIO system and all available modules (A, H, L, S, and T modules).
 </Card>
 
 <Card
   title="AIO LabVIEW Driver"
   icon="code"
-  href="aio/firmware#labview-drivers"
+  href="/aio/firmware#labview-drivers"
   horizontal
 >
   **Version 4.3** - LabVIEW Integration
 
   **Download LabVIEW Installer →**
 </Card>
-
 
 ## Contact Information
 
@@ -93,5 +222,5 @@ icon: 'gauge-high'
   **Website:** [www.echotm.com](https://www.echotm.com) <br></br>
   **Phone:** +1 (805) 880-5590 <br></br>
   **Hours:** Monday-Friday, 9 AM to 5 PM PST <br></br>
-  **Address:** 402 E Carrillo St Ste A, Santa Barbara, CA 93101 USA  
+  **Address:** 402 E Carrillo St Ste A, Santa Barbara, CA 93101 USA
 </Card>
