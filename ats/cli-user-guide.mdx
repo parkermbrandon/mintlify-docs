@@ -1,0 +1,509 @@
+---
+title: "Echo ATS CLI User Guide"
+version: "5.0"
+lastUpdated: "2025-12-05"
+---
+
+## Overview
+
+The Echo ATS Command-Line Interface (CLI) enables you to configure and control your Echo ATS device from the command prompt or integrate it into automated test sequences. The CLI provides scriptable access to all major device functions, including input configuration, session file management, headphone outputs, and device-level settings.
+
+### Key Capabilities
+
+- Configure microphone inputs with gain and constant current power
+- Load and save complete device configurations using session files
+- Configure headphone outputs with impedance measurement
+- Set device-level parameters like clock source
+- Read TEDS (IEEE 1451.4) data from smart transducers
+- Integrate with automated test frameworks and scripts
+
+### When to Use the CLI
+
+The CLI is ideal for:
+- **Test automation** - Integrate ATS configuration into automated test sequences
+- **Batch configuration** - Set up multiple channels quickly with scripts
+- **Remote operation** - Configure devices from scripts or remote sessions
+- **CI/CD integration** - Include hardware configuration in continuous testing pipelines
+- **Repetitive tasks** - Automate frequently-used configurations
+
+For interactive configuration and audio routing, use the **ATS Control Panel** GUI application.
+
+---
+
+### Installing the CLI
+
+1. Download and run the **Echo Test Interfaces Installer** from [support.echotm.com](https://support.echotm.com)
+
+2. The installer places the CLI in the default location:
+   ```
+   C:\Program Files\Echo Test Interfaces
+   ```
+
+3. The CLI executable is named **`EchoCLI.exe`**
+
+4. Verify installation by opening Command Prompt and navigating to the CLI folder:
+   ```
+   cd "C:\Program Files\Echo Test Interfaces"
+   EchoCLI.exe help
+   ```
+
+### Required Files
+
+The CLI requires **`EchoAPI.dll`** to communicate with the device. This library must be located:
+- In the same folder as `EchoCLI.exe`, OR
+- In `C:\Program Files\Echo Test Interfaces\`
+
+The installer places these files correctly. If you move the CLI executable, ensure you also move or copy the DLL.
+
+### Adding CLI to System PATH (Optional)
+
+To run the CLI from any directory without specifying the full path:
+
+1. Open **System Properties** → **Advanced** → **Environment Variables**
+
+2. Under **System Variables**, select **Path** and click **Edit**
+
+3. Click **New** and add:
+   ```
+   C:\Program Files\Echo Test Interfaces
+   ```
+
+4. Click **OK** to save changes
+
+5. Open a new Command Prompt and verify by typing:
+   ```
+   echocli help
+   ```
+
+---
+
+## Command Structure
+
+The Echo ATS CLI v5.0 uses a **command-based syntax** where the first argument specifies the operation:
+
+```
+echocli <command> [options...]
+```
+
+### Available Commands
+
+| Command | Purpose |
+|---------|---------|
+| `help` | Display help information for commands |
+| `mic` | Configure microphone input channels |
+| `headphone` | Configure headphone outputs and measure impedance |
+| `config` | Load or save session configuration files |
+| `device` | Configure device-level settings (clock source, calibration) |
+
+### Getting Help
+
+To display general help:
+```
+echocli help
+```
+
+To display help for a specific command:
+```
+echocli help <command>
+```
+
+For example:
+```
+echocli help mic
+echocli help config
+echocli help headphone
+```
+
+### Command Options Format
+
+Commands use **long-form options** with double dashes:
+```
+--option=value
+```
+
+For boolean options, you can omit the value to query the current setting:
+```
+--ccp          # Query current CCP setting
+--ccp=on       # Enable CCP
+```
+
+**Note**: Parameters are **not case-sensitive**.
+
+---
+
+## Configuring Microphone Inputs
+
+Use the `mic` command to configure input channels with gain, constant current power, and TEDS reading.
+
+### Command Syntax
+
+```
+echocli mic [--slot=<1|2>] --input=<1-4> [--gain=<1|10|100>] [--ccp=<on|off>] [--cal=<on|off>] [--teds[=file]]
+```
+
+### Options
+
+| Option | Description | Values |
+|--------|-------------|--------|
+| `--input` | Input channel to configure | `1`, `2`, `3`, `4` |
+| `--gain` | Input gain amplification | `1` (0 dB), `10` (20 dB), `100` (40 dB) |
+| `--ccp` | Constant current power for IEPE/ICP mics | `on`, `off` |
+| `--cal` | Calibration signal enable | `on`, `off` |
+| `--teds` | Read TEDS data from smart transducer | No value or filename for export |
+
+### Understanding Constant Current Power (CCP)
+
+Constant current power provides **4 mA** of DC power to IEPE (Integrated Electronics Piezo-Electric) or ICP (Integrated Circuit Piezoelectric) microphones and sensors.
+
+- **Enable CCP** (`--ccp=on`) when using IEPE/ICP microphones
+- **Disable CCP** (`--ccp=off`) when using:
+  - Line-level inputs
+  - Traditional condenser microphones (require phantom power)
+  - Dynamic microphones
+  - Passive sensors
+
+**Warning**: Enabling CCP on incompatible devices may damage equipment. Verify your transducer requires constant current power before enabling.
+
+### Examples
+
+**Example 1: Basic Configuration**
+
+Set input channel 3 to 10x gain and enable constant current power:
+```
+echocli mic --input=3 --gain=10 --ccp=on
+```
+
+**Example 2: Line Input Configuration**
+
+Configure input 1 for line-level signal with 1x gain and CCP disabled:
+```
+echocli mic --input=1 --gain=20 --ccp=off
+```
+
+**Example 3: High-Sensitivity Microphone**
+
+Set input 2 to maximum gain (100x) for very quiet signals:
+```
+echocli mic -input=2 --gain=40 --ccp=on
+```
+
+**Example 4: Query Current Settings**
+
+Display current gain and CCP settings for input 1:
+```
+echocli mic --input=1 --gain --ccp
+```
+
+
+### Reading TEDS Data
+
+TEDS (Transducer Electronic Data Sheet) is an IEEE 1451.4 standard that allows smart transducers to store calibration data digitally. Compatible microphones include manufacturer information, sensitivity, frequency response, and serial numbers in embedded memory.
+
+**Read and display TEDS data**:
+```
+echocli mic --input=1 --teds
+```
+
+**Export TEDS data to a file**:
+```
+echocli mic --input=1 --teds=calibration_data.csv
+echocli mic --input=1 --teds=calibration_data.json
+```
+
+---
+{/* 
+## Configuring Headphone Outputs
+
+Use the `headphone` command to configure headphone outputs and measure headphone impedance.
+
+### Command Syntax
+
+```
+echocli headphone [--headphone-impedance-channel=<left|right>]
+```
+
+### Options
+
+| Option | Description | Values |
+|--------|-------------|--------|
+| `--headphone-impedance-channel` | Select channel for impedance measurement | `left`, `right` |
+
+### Headphone Impedance Measurement
+
+The Echo ATS can measure the impedance of connected headphones. This helps verify proper headphone connection and driver characteristics.
+
+**Measure left channel impedance**:
+```
+echocli headphone --headphone-impedance-channel=left
+```
+
+**Measure right channel impedance**:
+```
+echocli headphone --headphone-impedance-channel=right
+```
+
+**Measure on specific slot**:
+```
+echocli headphone --slot=2 --headphone-impedance-channel=left
+```
+
+### Use Cases
+
+**Headphone Testing**: Verify headphone impedance matches specifications (typically 16Ω, 32Ω, 80Ω, or 250Ω)
+
+**Connection Verification**: Confirm headphones are properly connected before audio quality testing
+
+**Driver Characterization**: Measure impedance curves across frequency for detailed analysis
+
+--- */}
+
+## Managing Session Files
+
+Session files store complete device configurations, including all input/output settings, gain levels, routing, and driver parameters. Use session files to quickly restore known configurations or switch between test setups.
+
+### Command Syntax
+
+```
+echocli config [--load-file=<filename>] [--save-file=<filename>]
+```
+
+### Options
+
+| Option | Description |
+|--------|-------------|
+| `--load-file` | Load a session file and apply configuration to device |
+| `--save-file` | Save current device configuration to a session file |
+
+### Session File Extensions
+
+Session files typically use the `.aiosession` extension, though the exact extension may vary based on your configuration.
+
+### Loading Session Files
+
+Load a session file to instantly configure the entire device:
+
+```
+echocli config --load-file=<path\to\session.aiosession>
+```
+
+**Example**:
+
+Load a session file from the current directory:
+```
+echocli config --load-file=factory_default.aiosession
+```
+
+### Saving Session Files
+
+Save the current device configuration to a file:
+
+```
+echocli config --save-file=<filename.aiosession>
+```
+
+**Example**:
+
+Save current configuration:
+```
+echocli config --save-file=current_setup.aiosession
+```
+
+## Device-Level Configuration
+
+Use the `device` command to configure settings that affect the entire Echo ATS unit.
+
+### Command Syntax
+
+```
+echocli device [--clock=<internal|usb>] [--cal=<on|off>] [--wasapi=<on|off>]
+```
+
+### Options
+
+| Option | Description | Values |
+|--------|-------------|--------|
+| `--clock` | Audio clock source | `internal`, `usb` |
+| `--cal` | Device-wide calibration signal | `on`, `off` |
+| `--wasapi` | Windows WASAPI driver support | `on`, `off` |
+
+### Clock Source
+
+The clock source determines the master timing for all audio operations.
+
+**Internal Clock** (default):
+- Device uses its own crystal oscillator
+- Use for standalone operation
+- Best for most applications
+
+**USB Clock**:
+- Device synchronizes to USB bus clock
+- Use when synchronizing with computer's audio interface
+- May have slightly higher jitter
+
+Set clock source:
+```
+echocli device --clock=internal
+```
+
+### Calibration Signal
+
+The device-wide calibration signal can inject a known reference tone for testing and calibration purposes.
+
+Enable device calibration signal:
+```
+echocli device --cal=on
+```
+
+Disable device calibration signal:
+```
+echocli device --cal=off
+```
+
+**Note**: This is separate from per-channel calibration signals configured with the `mic` command.
+
+### WASAPI Driver
+
+Enable or disable Windows Audio Session API (WASAPI) support:
+
+```
+echocli device --wasapi=on
+echocli device --wasapi=off
+```
+
+---
+
+## Scripting and Automation
+
+The CLI is designed for integration into automated test workflows and scripts.
+
+### Using the CLI in Batch Scripts
+
+Create a Windows batch file (`.bat` or `.cmd`) to automate configuration:
+
+**Example: `setup_test.bat`**
+```batch
+@echo off
+REM Configure Echo ATS for microphone testing
+
+echo Configuring Echo ATS for test session...
+
+REM Load baseline configuration
+echocli config --load-file="C:\TestConfigs\baseline.aiosession"
+
+REM Configure input channels
+echocli mic --input=1 --gain=10 --ccp=on
+echocli mic --input=2 --gain=100 --ccp=on
+echocli mic --input=3 --gain=1 --ccp=off
+echocli mic --input=4 --gain=10 --ccp=on
+
+REM Set device clock
+echocli device --clock=internal
+
+echo Configuration complete!
+pause
+```
+
+Run the script by double-clicking or from Command Prompt:
+```
+setup_test.bat
+```
+
+## Troubleshooting
+
+### CLI Not Found
+
+**Problem**: Command Prompt cannot find `echocli` or `EchoCLI.exe`
+
+**Solutions**:
+- Navigate to the CLI installation directory before running commands:
+  ```
+  cd "C:\Program Files\Echo Test Interfaces"
+  ```
+- Add the CLI directory to your system PATH (see Installation section)
+- Use the full path to the executable:
+  ```
+  "C:\Program Files\Echo Test Interfaces\EchoCLI.exe" help
+  ```
+
+### DLL Not Found Error
+
+**Problem**: Error message: "EchoAPI.dll not found"
+
+**Solutions**:
+- Verify `EchoAPI.dll` is in the same folder as `EchoCLI.exe`
+- Copy the DLL to `C:\Program Files\Echo Test Interfaces\`
+- Reinstall the Echo Test Interfaces software using the installer
+
+### Device Not Detected
+
+**Problem**: CLI returns "Device not found" or "No ATS device connected"
+
+**Solutions**:
+1. Verify the Echo ATS device is powered on
+2. Check USB cable connection
+3. Open **Device Manager** and confirm the device appears under "Sound, video and game controllers"
+4. Try a different USB port
+5. Restart the device and computer
+6. Verify the device works with the ATS Control Panel GUI
+
+### Command Has No Effect
+
+**Problem**: CLI command completes but configuration doesn't change
+
+**Solutions**:
+- Check command syntax carefully (use `echocli help <command>`)
+- Verify correct slot number if using multi-module configuration
+- Ensure no other application (like ATS Control Panel) has exclusive device access
+- Try closing all other Echo applications and retry
+
+---
+
+## Additional Resources
+
+### API Library
+
+For custom application development, Echo provides a C++/Python API library:
+
+**GitHub Repository**: [github.com/mattgonzalez/EchoAIOExample](https://github.com/mattgonzalez/EchoAIOExample)
+
+---
+
+## Quick Reference
+
+### Common Command Examples
+
+**Configure microphone input**:
+```
+echocli mic --input=1 --gain=10 --ccp=on
+```
+
+**Load session file**:
+```
+echocli config --load-file=session.aiosession
+```
+
+**Save session file**:
+```
+echocli config --save-file=backup.aiosession
+```
+
+**Set device clock**:
+```
+echocli device --clock=internal
+```
+
+**Read TEDS data**:
+```
+echocli mic --input=1 --teds
+```
+
+**Query current settings**:
+```
+echocli mic --input=1 --gain --ccp
+```
+
+---
+
+© 2025 Echo Test + Measurement
+
+**Last Updated**: December 2025
