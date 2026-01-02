@@ -345,33 +345,6 @@ Set clock source:
 echocli device --clock=internal
 ```
 
-### Calibration Signal
-
-The device-wide calibration signal can inject a known reference tone for testing and calibration purposes.
-
-Enable device calibration signal:
-```
-echocli device --cal=on
-```
-
-Disable device calibration signal:
-```
-echocli device --cal=off
-```
-
-**Note**: This is separate from per-channel calibration signals configured with the `mic` command.
-
-### WASAPI Driver
-
-Enable or disable Windows Audio Session API (WASAPI) support:
-
-```
-echocli device --wasapi=on
-echocli device --wasapi=off
-```
-
----
-
 ## Scripting and Automation
 
 The CLI is designed for integration into automated test workflows and scripts.
@@ -408,56 +381,6 @@ Run the script by double-clicking or from Command Prompt:
 setup_test.bat
 ```
 
-## Troubleshooting
-
-### CLI Not Found
-
-**Problem**: Command Prompt cannot find `echocli` or `EchoCLI.exe`
-
-**Solutions**:
-- Navigate to the CLI installation directory before running commands:
-  ```
-  cd "C:\Program Files\Echo Test Interfaces"
-  ```
-- Add the CLI directory to your system PATH (see Installation section)
-- Use the full path to the executable:
-  ```
-  "C:\Program Files\Echo Test Interfaces\EchoCLI.exe" help
-  ```
-
-### DLL Not Found Error
-
-**Problem**: Error message: "EchoAPI.dll not found"
-
-**Solutions**:
-- Verify `EchoAPI.dll` is in the same folder as `EchoCLI.exe`
-- Copy the DLL to `C:\Program Files\Echo Test Interfaces\`
-- Reinstall the Echo Test Interfaces software using the installer
-
-### Device Not Detected
-
-**Problem**: CLI returns "Device not found" or "No ATS device connected"
-
-**Solutions**:
-1. Verify the Echo ATS device is powered on
-2. Check USB cable connection
-3. Open **Device Manager** and confirm the device appears under "Sound, video and game controllers"
-4. Try a different USB port
-5. Restart the device and computer
-6. Verify the device works with the ATS Control Panel GUI
-
-### Command Has No Effect
-
-**Problem**: CLI command completes but configuration doesn't change
-
-**Solutions**:
-- Check command syntax carefully (use `echocli help <command>`)
-- Verify correct slot number if using multi-module configuration
-- Ensure no other application (like ATS Control Panel) has exclusive device access
-- Try closing all other Echo applications and retry
-
----
-
 ## Additional Resources
 
 ### API Library
@@ -465,42 +388,6 @@ setup_test.bat
 For custom application development, Echo provides a C++/Python API library:
 
 **GitHub Repository**: [github.com/mattgonzalez/EchoAIOExample](https://github.com/mattgonzalez/EchoAIOExample)
-
----
-
-## Quick Reference
-
-### Common Command Examples
-
-**Configure microphone input**:
-```
-echocli mic --input=1 --gain=10 --ccp=on
-```
-
-**Load session file**:
-```
-echocli config --load-file=session.aiosession
-```
-
-**Save session file**:
-```
-echocli config --save-file=backup.aiosession
-```
-
-**Set device clock**:
-```
-echocli device --clock=internal
-```
-
-**Read TEDS data**:
-```
-echocli mic --input=1 --teds
-```
-
-**Query current settings**:
-```
-echocli mic --input=1 --gain --ccp
-```
 
 ---
 
