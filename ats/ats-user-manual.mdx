@@ -36,11 +36,11 @@ description: "Complete guide for installation, configuration, and operation of t
 </CardGroup>
 
 <Info>
-**Copyright © 2025 Echo Digital Audio Corporation. All rights reserved.**
+**Copyright © 2026 Echo Digital Audio Corporation. All rights reserved.**
 
 No part of this manual may be reproduced or transmitted in any form or by any means, electronic or mechanical, including photocopying, recording, or by any information storage and retrieval system, without permission in writing from the publisher.
 
-Echo Test + Measurement and Echo ATS are registered trademarks of Echo Digital Audio Corporation. Windows is a trademark of Microsoft Corporation. macOS, Mac, and Macintosh are trademarks of Apple, Inc.
+Echo Test + Measurement and Echo ATS are trademarks of Echo Digital Audio Corporation. Windows is a trademark of Microsoft Corporation. macOS, Mac, and Macintosh are trademarks of Apple, Inc.
 </Info>
 
 <Accordion title="Limited 3 Year Warranty">
@@ -63,23 +63,22 @@ Echo Test + Measurement and Echo ATS are registered trademarks of Echo Digital A
 ## Important Safety Instructions
 
 1. **Read Instructions** — Read all safety and operating instructions before operating this product
-2. **Keep Instructions** — Retain safety instructions and user manual for future reference
-3. **Follow Warnings** — Observe all warnings on your Echo ATS and in this manual
-4. **Moisture Protection** — Do not install or operate near water sources (sinks, damp basements, etc.)
-5. **Heat Protection** — Keep away from heat sources such as heaters or radiators
-6. **Power Requirements** — Operate only from stable AC power as specified. Use surge protector in areas prone to lightning
-7. **Proper Grounding** — Use only the provided grounded plug. Do not modify the plug. Ensure outlet is properly grounded
-8. **Power Cord Safety** — Route power cords to avoid damage to plugs, outlets, and cord exit points
-9. **No User Servicing** — There are no user serviceable parts inside. Opening the case voids warranty and exposes you to hazardous voltages
+2. **Follow Warnings** — Observe all warnings on your Echo ATS and in this manual
+3. **Moisture Protection** — Do not install or operate near water sources (sinks, damp basements, etc.)
+4. **Heat Protection** — Keep away from heat sources such as heaters or radiators
+5. **Power Requirements** — Operate only from stable AC power as specified. Use surge protector in areas prone to lightning or noisy factory environments
+6. **Proper Grounding** — Use only the provided grounded plug. Do not modify the plug. Ensure outlet is properly grounded
+7. **Power Cord Safety** — Route power cords to avoid damage to plugs, outlets, and cord exit points
+8. **No User Servicing** — There are no user serviceable parts inside. Opening the case voids warranty and exposes you to hazardous voltages
 
 **Contact your authorized repair center for all servicing needs.**
 </Warning>
 
 # 1. Introduction
 
-The Echo ATS Test System is a USB 2.0 compliant audio test platform compatible with ASIO and WASPI drivers on Windows computers and Core Audio on Macintosh (Mac) computers. When coupled with a computer running test software, ATS forms a complete system for testing digital and analog audio electronics and acoustics in consumer and professional products. Echo ATS products are ideally suited for a high-volume production environment where testing occurs on a continual basis.
+The Echo ATS Test System is a USB 2.0 compliant audio test platform compatible with ASIO and WASPI drivers on Windows computers, Core Audio on Macintosh (Mac) computers, ALSA on Linux computers. When coupled with a computer running test software, the ATS forms a complete system for testing digital and analog audio electronics and acoustics in consumer and professional products. Echo ATS products are ideally suited for a high-volume production environment where testing occurs on a continual basis.
 
-Echo ATS combines the functionality of multiple pieces of test equipment into a single, integrated device for increased reliability at a reduced cost. In addition to audio testing, it has the capability to control measurement fixtures.
+Echo ATS combines the functionality of multiple pieces of test equipment into a single, integrated device for increased reliability at a reduced cost. In addition to audio testing, it has the capability to control measurement fixtures through its GPIO interface.
 
 ![Echo ATS Test System](/images/ats/ats-front.jpg)
 *Figure 1: Echo ATS Test System*
@@ -90,10 +89,10 @@ Echo ATS combines the functionality of multiple pieces of test equipment into a 
 
 <Steps>
   <Step title="Connect Power">
-    Connect the power cable to the IEC C14 power inlet. Both locking and non-locking cables may be used. The RGB LED on the front panel indicates when power is applied and the ATS is operating.
+    Connect the power cable to the IEC C14 power inlet. Both locking and non-locking cables may be used. The LED on the front panel is green when power is applied and the ATS is operating properly.
 
     <Info>
-    The universal AC input accepts 90 – 264 VAC at 50 or 60 Hz. The ATS, equipment connected to the ATS, and the test computer must all be connected to the same surge-protected power strip.
+    The universal AC input accepts 100 – 240 VAC at 50 or 60 Hz. ***The ATS, equipment connected to the ATS, and the test computer must all be connected to the same surge-protected power strip.***
     </Info>
   </Step>
 
@@ -142,7 +141,7 @@ Echo ATS combines the functionality of multiple pieces of test equipment into a 
     <Info>
     While no driver is needed, you may want to download the macOS command-line utilities for programmatic control from the [Echo website](https://www.echotm.com/library).
     </Info>
-
+    {/*Perhaps add a ALSA tab for linux support*/}
     {/* <Card title="Download macOS Utilities" icon="apple" href="https://www.echotm.com/library">
       Optional command-line tools for macOS
     </Card> */}
@@ -151,9 +150,9 @@ Echo ATS combines the functionality of multiple pieces of test equipment into a 
 
 ## 3rd Party Test and Measurement Software
 
-The Echo ATS Test System may be used with a wide variety of 3rd party test and measurement software via the Echo ATS ASIO driver. Because ASIO is a digital interface, all levels are communicated between the hardware and software as digital values, and there’s no inherent conversion to actual analog I/O values when using an analog interface. To properly do the conversion, the software needs to know the correct scaling factor, which defines the relationship between analog voltage and digital full-scale level (0 dBFS). The scaling factors for different types of inputs and outputs are typically different. For example, the scaling factor of a line-level output will be different than for a speaker output, because the maximum voltage of a speaker output is much greater.
+The Echo ATS Test System may be used with a wide variety of 3rd party test and measurement software via the Echo ATS ASIO driver. Because ASIO is a digital interface, all levels are communicated between the hardware and software as digital values, and there’s no inherent conversion to actual analog I/O values when using an analog interface. To properly do the conversion, the software needs to know the correct scaling factor, which defines the relationship between analog voltage and digital full-scale level (0 dBFS). The scaling factors for different types of inputs and outputs are typically different. For example, the scaling factor of a line-level output will be different than for a speaker output, because the maximum voltage of a speaker output is greater.
 
-Although scaling factors can be determined by experimentation using a calibrated voltage meter, we provide you with the correct scaling factors for our hardware, so that you can simply enter these values into the appropriate settings in the measurement software that you are using.
+Although scaling factors can be determined by experimentation using a calibrated voltage meter, we provide you with the correct scaling factors for our hardware. You can simply enter these values into the appropriate settings in the measurement software that you are using.
 
 ### Scaling Factors Reference
 
@@ -161,8 +160,8 @@ Although scaling factors can be determined by experimentation using a calibrated
   <Tab title="Output Scaling">
     | IO Type | Scaling Factor |
     | :--- | :--- |
-    | Line (unbalanced) | 8.0 V/FS |
-    | Line (balanced) | 16.0 V/FS |
+    | Line (unbalanced) | 4.0 V/FS |
+    | Line (balanced) | 8.0 V/FS |
     | Headphone | 3.0 V/FS |
     | Amplifier/Speaker | 9.545 V/FS |
   </Tab>
@@ -196,70 +195,15 @@ The control panel controls and monitors the following ATS hardware functions:
 * Diagnostic logging and directory
 
 
-The tabs and drop-down menus are described in the text that follows. If the control panel is not already installed, please see the *Echo* Driver Software section on page . **The control panel is for ATS hardware control only. It does not perform any audio analysis.**
+The tabs and drop-down menus are described in the text that follows. If the control panel is not already installed, please see the *Echo* Driver Software section on page . **The control panel is for ATS hardware control and metering only. It does not perform any audio analysis.**
 
-Channels Tab
+## Channels Tab
 
 The Echo Acoustic Test System Inputs and Outputs are configurable for testing different types of devices (i.e., acoustic, line level, headphone, or speaker). When you configure ATS I/O for testing different types of devices, it adjusts the relative voltage and phase based on the desired setup.
 
 <img src="/images/ats/control-panel.png" alt="ATS Control Panel Channels Tab" style={{display: "block", maxWidth: "700px", margin: "0 auto"}} />
 
 <div style={{textAlign: "center"}}>**Figure 3: Channels tab (ATS-SH)**</div>
-
-## Options Tab
-
-The Options tab contains information about the connected ATS test system and allows various configuration options to be set. Its controls and indicators are described below.
-
-<img src="/images/ats/cc-options-tab.png" alt="ATS Control Panel Options Tab" style={{display: "block", maxWidth: "700px", margin: "0 auto"}} />
-
-<div style={{textAlign: "center"}}>**Figure 4: Options tab**</div>
-
-### Device
-
-* **Serial Number:** Unique serial number for the device. This can also be found on the bottom of the unit.
-
-* **Firmware:** Displays the current firmware version and allows you to manually update or revert to the factory supplied version.
-
-* **Auto-update firmware:** When checked, you will be prompted to update the firmware if the control panel includes a later version than is already installed.
-
-* **Logging:** Enables diagnostic logging. You typically do not need to enable logging unless requested by Echo support.
-
-* **Log directory:** Directory where the log file will be stored.
-
-### Clock
-
-* **Source:** Selects the clock source as Internal (the ATS’s built-in crystal oscillator).
-
-* **Sample rate:** Shows the ASIO clock rate selected in the measurement software.
-
-### Control Panel
-
-* **Show window when ATS connects:** Shows the control panel window when the ATS test system is connected.
-
-* **Show system tray icon:** Shows the control panel icon in the system tray when running.
-
-* **GPU accelerated rendering:** When checked, allows the GPU (graphics card) to offload from the CPU the task of redrawing of the control panel meters.
-
-### Driver
-
-* **Version:** Currently installed driver version.
-
-* **ASIO name:** Shows the name of the Echo ASIO driver as it will be displayed in the measurement software.
-
-* **Windows system audio (WASPI):** Enables the Windows WASAPI audio driver. Leave this unchecked unless you are running software that only supports WASAPI and does not support ASIO.
-
-## File Menu
-
-<div style={{textAlign: "center"}}><img src="/images/ats/file-help.png" alt="ATS Control Panel Help" style={{display: "block", maxWidth: "300px", margin: "0 auto"}} /></div>
-
-
-<div style={{textAlign: "center"}}>**Figure 5: File menu**</div>
-
-The File menu allows you to open and save sessions. An ATS session stores all the current hardware settings in a text file that can be used to reset the hardware to a previous state.
-
-Additionally, the ATS command-line application can read session files, so you can fully configure the ATS, save the configuration as a session, and then later load all those settings using a single command-line call.
-
-It is not usually necessary to directly edit the session file, as the easiest way to construct it is simply to set the control panel up as desired and then save the session. It can be, however, be easily edited in a text editor.
 
 # 4. Analog Outputs
 
@@ -414,6 +358,101 @@ Click the caret to expand or condense the channel display for each module type. 
 
 <div style={{textAlign: "center"}}>**Figure 15: Analog Input channel**</div>
 
+# 6. Digital IO
+
+The ATS includes SPDIF digital audio input and output on BNC connectors located on the rear panel. The system provides two input channels and two output channels that can operate simultaneously with the analog I/O.
+
+### Specifications
+
+The digital interface uses consumer SPDIF format (IEC60958) with 24-bit resolution and supports standard sample rates from 44.1 kHz to 192 kHz. The SPDIF signal is self-clocking, extracting timing from the digital stream itself.
+
+Digital channels map to the ASIO driver as:
+
+* Input: Channels 9 and 10  
+* Output: Channels 5 and 6
+
+### Digital I/O Meters
+
+In the Channels tab, the Digital In and Digital Out sections show real-time levels for channels Dig 1 and Dig 2\. Levels display in either dBFS or percentage.
+
+<div style={{textAlign: "center"}}><img src="/images/ats/cc-digital-in.png" alt="Digital Input Tab" style={{display: "block", maxWidth: "550px", margin: "0 auto"}} /></div><br />
+<div style={{textAlign: "center"}}><img src="/images/ats/cc-digital-out.png" alt="Digital Output Tab" style={{display: "block", maxWidth: "550px", margin: "0 auto"}} /></div>
+
+
+The Options tab contains a Digital IO dropdown menu to select between:
+
+* SPDIF Mode: Standard digital audio operation  
+* Word Clock Mode: Synchronization input/output
+
+## Options Tab
+
+The Options tab contains information about the connected ATS test system and allows various configuration options to be set. Its controls and indicators are described below.
+
+<img src="/images/ats/cc-options-tab.png" alt="ATS Control Panel Options Tab" style={{display: "block", maxWidth: "700px", margin: "0 auto"}} />
+
+<div style={{textAlign: "center"}}>**Figure 4: Options tab**</div>
+
+### Word Clock Mode
+
+When selected from the Digital IO dropdown, the ATS configures the digital I/O BNC connectors for word clock operation. The clock can either be received from an external source (Word Clock) or generated by the ATS (Internal) for synchronizing multiple audio devices. When in Word Clock mode, the SPDIF input and output channels are disabled.
+
+<div style={{textAlign: "center"}}><img src="/images/ats/option-tab-digital-io.png" alt="" style={{display: "block", maxWidth: "750px", margin: "0 auto"}} /></div>
+
+When Internal is selected, the ATS generates a word clock signal on the Digital Out BNC connector at the sample rate selected in the ASIO driver. This output can be used to synchronize other audio devices to the ATS.
+
+When Word Clock is selected, the ATS locks to an external word clock signal applied to the Digital In BNC connector. The ATS uses this signal as its clock reference, and the sample rate is determined by the frequency of the incoming word clock.
+ 
+ The Options tab displays the detected input frequency when a word clock signal is present. A 75Ω termination option ensures proper impedance matching.
+
+<div style={{textAlign: "center"}}><img src="/images/ats/option-tab-digital-io-word-clock.png" alt="" style={{display: "block", maxWidth: "750px", margin: "0 auto"}} /></div>
+
+### Device
+
+* **Serial Number:** Unique serial number for the device. This can also be found on the bottom of the unit.
+
+* **Firmware:** Displays the current firmware version and allows you to manually update or revert to the factory supplied version.
+
+* **Auto-update firmware:** When checked, you will be prompted to update the firmware if the control panel includes a later version than is already installed.
+
+* **Logging:** Enables diagnostic logging. You typically do not need to enable logging unless requested by Echo support.
+
+* **Log directory:** Directory where the log file will be stored.
+
+### Clock
+
+* **Source:** Selects the clock source as Internal (the ATS’s built-in crystal oscillator).
+
+* **Sample rate:** Shows the ASIO clock rate selected in the measurement software.
+
+### Control Panel
+
+* **Show window when ATS connects:** Shows the control panel window when the ATS test system is connected.
+
+* **Show system tray icon:** Shows the control panel icon in the system tray when running.
+
+* **GPU accelerated rendering:** When checked, allows the GPU (graphics card) to offload from the CPU the task of redrawing of the control panel meters.
+
+### Driver
+
+* **Version:** Currently installed driver version.
+
+* **ASIO name:** Shows the name of the Echo ASIO driver as it will be displayed in the measurement software.
+
+* **Windows system audio (WASPI):** Enables the Windows WASAPI audio driver. Leave this unchecked unless you are running software that only supports WASAPI and does not support ASIO.
+
+## File Menu
+
+<div style={{textAlign: "center"}}><img src="/images/ats/file-help.png" alt="ATS Control Panel Help" style={{display: "block", maxWidth: "300px", margin: "0 auto"}} /></div>
+
+
+<div style={{textAlign: "center"}}>**Figure 5: File menu**</div>
+
+The File menu allows you to open and save sessions. An ATS session stores all the current hardware settings in a text file that can be used to reset the hardware to a previous state.
+
+Additionally, the ATS command-line application can read session files, so you can fully configure the ATS, save the configuration as a session, and then later load all those settings using a single command-line call.
+
+It is not usually necessary to directly edit the session file, as the easiest way to construct it is simply to set the control panel up as desired and then save the session. It can be, however, be easily edited in a text editor.
+
 ### TEDS
 
 When the TEDS button is clicked, the TEDS data window will be displayed. If the attached microphone does not support TEDS, then a message “TEDS device not found” will be shown instead of the data.
@@ -486,47 +525,6 @@ The current sense resistor is permanently connected in series with the positive 
 ![Impedance Measurement Circuit](/images/ats/impedance-circuit.png)
 *Simplified circuit diagram showing VMON and IMON configuration*
 
-# 6. Digital IO
-
-The ATS includes SPDIF digital audio input and output on BNC connectors located on the rear panel. The system provides two input channels and two output channels that can operate simultaneously with the analog I/O.
-
-### Specifications
-
-The digital interface uses consumer SPDIF format (IEC60958) with 24-bit resolution and supports standard sample rates from 44.1 kHz to 192 kHz. The SPDIF signal is self-clocking, extracting timing from the digital stream itself.
-
-Digital channels map to the ASIO driver as:
-
-* Input: Channels 9 and 10  
-* Output: Channels 5 and 6
-
-### Control Panel
-
-In the Channels tab, the Digital In and Digital Out sections show real-time levels for channels Dig 1 and Dig 2\. Levels display in either dBFS or percentage.
-
-<div style={{textAlign: "center"}}><img src="/images/ats/cc-digital-in.png" alt="Digital Input Tab" style={{display: "block", maxWidth: "550px", margin: "0 auto"}} /></div><br />
-<div style={{textAlign: "center"}}><img src="/images/ats/cc-digital-out.png" alt="Digital Output Tab" style={{display: "block", maxWidth: "550px", margin: "0 auto"}} /></div>
-
-
-The Options tab contains a Digital IO dropdown menu to select between:
-
-* SPDIF Mode: Standard digital audio operation  
-* Word Clock Mode: Synchronization input/output
-
-### Word Clock Mode
-
-When selected from the Digital IO dropdown, the ATS configures the digital I/O BNC connectors for word clock operation. The clock can either be received from an external source (Word Clock) or generated by the ATS (Internal) for synchronizing multiple audio devices. When in Word Clock mode, the SPDIF input and output channels are disabled.
-
-<div style={{textAlign: "center"}}><img src="/images/ats/option-tab-digital-io.png" alt="" style={{display: "block", maxWidth: "750px", margin: "0 auto"}} /></div>
-
-When Internal is selected, the ATS generates a word clock signal on the Digital Out BNC connector at the sample rate selected in the ASIO driver. This output can be used to synchronize other audio devices to the ATS.
-
-When Word Clock is selected, the ATS locks to an external word clock signal applied to the Digital In BNC connector. The ATS uses this signal as its clock reference, and the sample rate is determined by the frequency of the incoming word clock.
- 
- The Options tab displays the detected input frequency when a word clock signal is present. A 75Ω termination option ensures proper impedance matching.
-
-<div style={{textAlign: "center"}}><img src="/images/ats/option-tab-digital-io-word-clock.png" alt="" style={{display: "block", maxWidth: "750px", margin: "0 auto"}} /></div>
-
-
 ## Aux (GPIO)
 
 The ATS features 4 TTL level inputs and 4 open drain TTL level outputs capable of sinking up to 250mA of current on a female 9 pin locking D-sub connector. They allow sending and receiving switch closure information under program control for interfacing to other test or display devices. A simple application of this feature would be to illuminate a Pass/Fail light-bar based on test results. Navigate to the Aux tab in the control panel to monitor and control the auxiliary inputs and outputs.
@@ -561,10 +559,10 @@ The ATS features 4 TTL level inputs and 4 open drain TTL level outputs capable o
   </div>
 </div>
 
-## Contact Information
+## Contact Us
 
-<Card title="" icon="envelope" href="mailto:info@echoaudio.com" horizontal>
-  *Echo support and info:* info@echoaudio.com
+<Card title="" icon="envelope" href="https://echonew.wpenginepowered.com/contact/" horizontal>
+  Contact Echo for info or support.
 </Card>
 
 
