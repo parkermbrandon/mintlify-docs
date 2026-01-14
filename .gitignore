@@ -1,6 +1,9 @@
 # Releases directory - executables are uploaded to GitHub Releases, not committed
 releases/
 
+# Downloads - installers and docs are uploaded to GitHub Releases
+downloads/
+
 # Node modules
 node_modules/
 
