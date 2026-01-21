@@ -18,6 +18,12 @@
             "pages": [
               "index"
             ]
+          },
+          {
+            "group": "Legacy Products",
+            "pages": [
+              "legacy/legacy"
+            ]
           }
         ]
       },
