@@ -101,6 +101,8 @@ With the signal path configured, you can run a basic acoustic measurement to ver
   <Step title="Configure the ATS Output">
     Open the **ATS Control Panel** and set the output channel connected to your speaker to **AMP** mode. This configures the output as a floating differential amplifier output suitable for driving speakers directly.
 
+    ![Output AMP Mode](/images/ats/output-amp-mode.png)
+
     <Warning>
     Amplifier outputs are floating and not ground-referenced. Do **not** connect the ground terminal when using AMP mode. Connect the speaker across the + and - terminals only.
     </Warning>
@@ -110,6 +112,9 @@ With the signal path configured, you can run a basic acoustic measurement to ver
     In the ATS Control Panel, configure the input channel connected to your microphone:
     - **Gain:** Set to the appropriate level for your microphone. Start with +0 dB and increase if needed. Use the lowest gain setting that provides sufficient signal level for the best dynamic range.
     - **CC (Constant Current):** Enable if using a CCP/IEPE/ICP powered measurement microphone.
+  
+  ![Input CC Mode](/images/ats/input-cc.png)
+  
   </Step>
 
   <Step title="Position the Microphone">
@@ -122,10 +127,18 @@ With the signal path configured, you can run a basic acoustic measurement to ver
 <Steps>
   <Step title="Select a Measurement">
     In APx500 Flex under the Navigator, click the 'Add Measurement' button and select an acoustic measurement such as **Frequency Response** or **THD+N**. These measurements will use the signal path you configured above.
+  
+  ![Select Measurement](/images/ats/add-test.png)
+
+  ![Add Test](/images/ats/ap-test.png)
+  
   </Step>
 
   <Step title="Run the Measurement">
     Click the **Run** button to execute the measurement. AP Flex will generate the stimulus signal through the ATS amplifier output, and capture the microphone response through the ATS input. Results will be displayed in the AP Flex measurement graphs.
+  
+  ![Run Measurement](/images/ats/run.png)
+  
   </Step>
 
   <Step title="Verify Results">
@@ -133,6 +146,8 @@ With the signal path configured, you can run a basic acoustic measurement to ver
     - Signal levels should be well above the noise floor
     - No clipping should be visible on either the output or input (check the ATS Control Panel meters)
     - The frequency response shape should be consistent with the expected behavior of your speaker and microphone
+
+  ![Measurement Results](/images/ats/frequency-response.png)
 
   </Step>
 </Steps>
