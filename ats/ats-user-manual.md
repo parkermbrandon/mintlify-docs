@@ -7,13 +7,13 @@ pdf_options:
 
 **Complete guide for installation, configuration, and operation of the Echo ATS Acoustic Test System**
 
----
+
 
 ![ATS Front Panel](/images/ats/ats-front.jpg)
 
 ![ATS Rear Panel](/images/ats/ats-back.jpg)
 
----
+
 
 > **Copyright © 2026 Echo Digital Audio Corporation. All rights reserved.**
 >
@@ -21,7 +21,7 @@ pdf_options:
 >
 > Echo Test + Measurement and Echo ATS are trademarks of Echo Digital Audio Corporation. Windows is a trademark of Microsoft Corporation. macOS, Mac, and Macintosh are trademarks of Apple, Inc.
 
----
+
 
 <div style="page-break-before: always;"></div>
 
@@ -41,7 +41,7 @@ As with the disposal of all old electrical and electronic equipment, this produc
   <img src="/images/ats/not-trash-logo-small.png" alt="WEEE Logo"> <strong>WEEE</strong>
 </p>
 
----
+
 
 ## Important Safety Instructions
 
@@ -58,7 +58,7 @@ As with the disposal of all old electrical and electronic equipment, this produc
 
 **Contact your authorized repair center for all servicing needs.**
 
----
+
 
 <div style="page-break-before: always;"></div>
 
@@ -74,7 +74,7 @@ Echo ATS combines the functionality of multiple pieces of test equipment into a 
     <em>Figure 1: Echo ATS Test System</em>
 </p>
 
----
+
 
 <div style="page-break-before: always;"></div>
 
@@ -94,7 +94,7 @@ Connect the supplied USB-C cable to the USB-C connector on the back of the ATS, 
 
 > **Tip - Mounting:** The ATS includes mounting holes on the bottom of the unit for secure installation. See the [mounting holes drawing](https://github.com/parkermbrandon/mintlify-docs/releases/download/ats-v5.0.2/ATS.Mounting.Holes.pdf) for dimensions and hole positions.
 
----
+
 
 ## Driver Installation
 
@@ -121,7 +121,7 @@ Support for USB audio is built into macOS through Core Audio. The ATS is automat
 
 > **Note:** While no driver is needed, you may want to download the macOS command-line utilities for programmatic control from Echo: [ATS Downloads](https://support.echotm.com/ats/downloads)
 
----
+
 
 <div style="page-break-before: always;"></div>
 
@@ -154,8 +154,8 @@ Although scaling factors can be determined by experimentation using a calibrated
 | IO Type | Scaling Factor |
 | :--- | :--- |
 | Mic-Line | 161.6 mFS/V |
-| Headphone Impedance VMON | 333.3 mFS/V |
-| Headphone Impedance IMON * | 8.0 FS/V |
+| Line Impedance VMON | 333.3 mFS/V |
+| Line Impedance IMON * | 8.0 FS/V |
 | Speaker Impedance VMON | 80.80 mFS/V |
 | Speaker Impedance IMON * | 161.6 mFS/V |
 
@@ -165,7 +165,7 @@ Although scaling factors can be determined by experimentation using a calibrated
 </tr>
 </table>
 
----
+
 
 <div style="page-break-before: always;"></div>
 
@@ -196,7 +196,7 @@ The Echo Acoustic Test System Inputs and Outputs are configurable for testing di
     <em>Figure 2: Channels tab</em>
 </center>
 
----
+
 
 <div style="page-break-before: always;"></div>
 
@@ -211,6 +211,7 @@ The ATS provides four configurable analog output channels with three distinct op
 <center>
     <em>Figure 3: Channels tab - Analog Output</em>
 </center>
+<br></br>
 
 ## Output Configuration
 
@@ -228,7 +229,7 @@ The output level of each channel is displayed both on a horizontal bar graph and
 
 <br></br>
 
----
+
 
 <div style="page-break-before: always;"></div>
 
@@ -273,7 +274,7 @@ The AMP mode is designed for making acoustic measurements of speakers, drivers, 
     <em>Figure 5: Control panel showing outputs 1-4 configured as AMP</em>
 </center>
 
----
+
 
 <div style="page-break-before: always;"></div>
 
@@ -319,7 +320,7 @@ The HP mode is optimized for testing wired headphones, headsets, earbuds, and he
   <em>Figure 7: Control panel showing outputs 1-2 configured as HP</em>
 </center>
 
----
+
 
 ## Line-Level Outputs (LINE Mode)
 
@@ -363,7 +364,7 @@ The LINE mode provides balanced outputs for interfacing with professional audio 
   <em>Figure 9: Control panel showing outputs 1-2 configured as LINE</em>
 </center>
 
----
+
 
 <div style="page-break-before: always;"></div>
 
@@ -403,7 +404,7 @@ Click the caret to expand or condense the channel display for each module type. 
   <em>Figure 11: Channel Tab - Analog Input channels 1 - 8</em>
 </center>
 
----
+
 
 <div style="page-break-before: always;"></div>
 
@@ -445,7 +446,7 @@ The Options tab contains a Digital IO dropdown menu to select between:
 * SPDIF Mode: Standard digital audio operation
 * Word Clock Mode: Synchronization input/output
 
----
+
 
 <div style="page-break-before: always;"></div>
 
@@ -516,7 +517,7 @@ The Options tab displays the detected input frequency when a word clock signal i
 
 * **Windows system audio (WASPI):** Enables the Windows WASAPI audio driver. Leave this unchecked unless you are running software that only supports WASAPI and does not support ASIO.
 
----
+
 
 ## File Menu
 
@@ -535,7 +536,7 @@ Additionally, the ATS command-line application can read session files, so you ca
 
 It is not usually necessary to directly edit the session file, as the easiest way to construct it is simply to set the control panel up as desired and then save the session. It can be, however, be easily edited in a text editor.
 
----
+
 
 <div style="page-break-before: always;"></div>
 
@@ -554,7 +555,7 @@ TEDS data is not automatically transferred to the audio analysis software—it m
 
 Sensitivity is displayed by default in units of Volt/Pascal. Some audio test software, such as Audio Precision's APx500 Flex, requires the sensitivity data to be entered in units of Pascals/Volt (also called the "scaling factor"). Checking the "Show inverse units" checkbox at the bottom will switch the "Sensitivity @ reference condition" units to Pascals/Volt.
 
----
+
 
 <div style="page-break-before: always;"></div>
 
@@ -623,7 +624,7 @@ When impedance mode is active:
 </center>
 <br></br>
 
----
+
 
 <div style="page-break-before: always;"></div>
 
@@ -669,7 +670,7 @@ The ATS features 4 TTL level inputs and 4 open drain TTL level outputs capable o
 </table>
 </center>
 
----
+
 
 ## Contact Us
 
