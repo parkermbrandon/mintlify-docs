@@ -470,10 +470,44 @@ Now let's verify your module is working correctly. Commands are case-insensitive
         </Note>
       </Step>
 
+      <Step title="Pair Second Earbud (Coordinated Sets)">
+        If your device is a set of earbuds, use SCAN_RSI to find and pair the second earbud:
+
+        <CodeGroup>
+          ```bash Command
+          SCAN_RSI 5 AABBCCDDEEFF 0
+          ```
+
+          ```text Response
+          PENDING
+          SCAN_RSI FFEEDDCCBBAA
+          OK
+          ```
+        </CodeGroup>
+
+        Then pair the second earbud:
+
+        <CodeGroup>
+          ```bash Command
+          PAIR_RSI FFEEDDCCBBAA
+          ```
+
+          ```text Response
+          PENDING
+          PAIR_OK FFEEDDCCBBAA
+          PAIR_OK_LE FFEEDDCCBBAA
+          ```
+        </CodeGroup>
+
+        <Note>
+        The `0` after the address is the address type (0 = public). The second earbud will auto-connect when you open a UTX stream to the first earbud.
+        </Note>
+      </Step>
+
       <Step title="Open BLE Connection">
         <CodeGroup>
           ```bash Command
-          OPEN AABBCCDDEEFF BLE
+          OPEN AABBCCDDEEFF BLE 0
           ```
 
           ```text Response
@@ -481,39 +515,41 @@ Now let's verify your module is working correctly. Commands are case-insensitive
           OPEN_OK 14 BLE AABBCCDDEEFF
           ```
         </CodeGroup>
+
+        <Note>
+        The `0` after BLE is the address type (0 = public address).
+        </Note>
       </Step>
 
       <Step title="Open Audio Stream">
         <CodeGroup>
           ```bash Command
-          OPEN AABBCCDDEEFF UTXM
+          OPEN AABBCCDDEEFF UTX 0 0
           ```
 
           ```text Response
           PENDING
-          OPEN_OK 18 UTXM AABBCCDDEEFF
-          LC3_MEDIA_START 18 SOURCE 8 CONTEXT 4
-          ABS_VOL 18 136
+          OPEN_OK 17 UTX AABBCCDDEEFF
+          LC3_MEDIA_START 17 SOURCE 8 CONTEXT 4
+          ABS_VOL 17 136
           ```
         </CodeGroup>
+
+        Audio streaming begins automatically when the UTX link opens — no separate MUSIC command is needed.
+
+        **UTX parameters:**
+        - First `0`: Address type (0 = public)
+        - Second `0`: Connection info — `0` for music, `1` for voice
 
         **Stream types:**
-        - `UTXM`: Unicast transmit (music)
-        - `UTXV`: Unicast transmit (voice)
+        - `UTX 0 0`: Unicast transmit (music)
+        - `UTX 0 1`: Unicast transmit (voice)
         - `URXM`: Unicast receive (music)
         - `URXV`: Unicast receive (voice)
-      </Step>
 
-      <Step title="Start Playback">
-        <CodeGroup>
-          ```bash Command
-          MUSIC 18 PLAY
-          ```
-
-          ```text Response
-          OK
-          ```
-        </CodeGroup>
+        <Note>
+        To stop a UTX audio stream, close the link with `CLOSE <link_id>` (e.g., `CLOSE 14`).
+        </Note>
       </Step>
 
       <Step title="Verify Stream Status">
@@ -525,7 +561,7 @@ Now let's verify your module is working correctly. Commands are case-insensitive
           ```text Response
           STATE CONNECTABLE[ON] DISCOVERABLE[IDLE] ADVERTISING[ON]
           LINK 14 CONNECTED BLE AABBCCDDEEFF MTU 250
-          LINK 18 CONNECTED UTXM AABBCCDDEEFF STREAMING LC3 MEDIA
+          LINK 17 CONNECTED UTX AABBCCDDEEFF STREAMING LC3 MEDIA
           SNK_RATE 48000 SNK_SDU_INT 10000 SNK_SDU_SIZE 100
           SNK_RTN 5 SNK_P_DELAY 40000 SNK_MAX_LAT 95
           OK
@@ -627,6 +663,17 @@ Now let's verify your module is working correctly. Commands are case-insensitive
         SCAN 5 OFF 3  # Scan LE Unicast devices
         ```
       </Card>
+
+      <Card title="SCAN_RSI">
+        Find the second earbud in a coordinated set
+
+        **Syntax:** `SCAN_RSI <time> <bt_addr> <addr_type>`
+
+        **Example:**
+        ```bash
+        SCAN_RSI 5 AABBCCDDEEFF 0  # Find set member (0=public addr)
+        ```
+      </Card>
     </CardGroup>
   </Accordion>
 
@@ -655,16 +702,30 @@ Now let's verify your module is working correctly. Commands are case-insensitive
         ```
       </Card>
 
-      <Card title="OPEN">
-        Open profile connection
+      <Card title="PAIR_RSI">
+        Pair with the second earbud found via SCAN_RSI
 
-        **Syntax:** `OPEN <bt_addr> <profile>`
-
-        **Profiles:** A2DP, AVRCP, BLE, UTXM, URXM, etc.
+        **Syntax:** `PAIR_RSI <bt_addr>`
 
         **Example:**
         ```bash
-        OPEN 001122334455 A2DP
+        PAIR_RSI FFEEDDCCBBAA
+        ```
+      </Card>
+
+      <Card title="OPEN">
+        Open profile connection
+
+        **Syntax:** `OPEN <bt_addr> <profile> [addr_type] [connection_info]`
+
+        **Profiles:** A2DP, AVRCP, BLE, UTX, URXM, URXV, etc.
+
+        **Examples:**
+        ```bash
+        OPEN 001122334455 A2DP        # Classic A2DP
+        OPEN AABBCCDDEEFF BLE 0       # BLE link (0=public addr)
+        OPEN AABBCCDDEEFF UTX 0 0     # Unicast music (0=music)
+        OPEN AABBCCDDEEFF UTX 0 1     # Unicast voice (1=voice)
         ```
       </Card>
 
@@ -684,7 +745,7 @@ Now let's verify your module is working correctly. Commands are case-insensitive
   <Accordion title="Audio Control" icon="music">
     <CardGroup cols={1}>
       <Card title="MUSIC">
-        Control playback
+        Control playback (Classic A2DP and Auracast only)
 
         **Syntax:** `MUSIC <link_id> <action>`
 
@@ -692,8 +753,12 @@ Now let's verify your module is working correctly. Commands are case-insensitive
 
         **Example:**
         ```bash
-        MUSIC 10 PLAY
+        MUSIC 11 PLAY
         ```
+
+        <Note>
+        The MUSIC command works with A2DP, AVRCP, and Auracast (BRX1/BRX2) links. It does not apply to UTX unicast streams — those start audio automatically when the link opens. Use `CLOSE <link_id>` to stop a UTX stream.
+        </Note>
       </Card>
 
       <Card title="VOLUME">
