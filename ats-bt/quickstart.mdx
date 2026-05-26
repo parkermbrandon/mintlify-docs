@@ -455,7 +455,7 @@ Now let's verify your module is working correctly. Commands are case-insensitive
       <Step title="Pair with BLE Device">
         <CodeGroup>
           ```bash Command
-          PAIR_LE AABBCCDDEEFF
+          PAIR_LE AABBCCDDEEFF 0
           ```
 
           ```text Response
@@ -464,8 +464,16 @@ Now let's verify your module is working correctly. Commands are case-insensitive
           ```
         </CodeGroup>
 
+        **Address type parameter:**
+        - `0` — Public address (most LE Audio earbuds, e.g. Galaxy Buds 2 Pro)
+        - `1` — Private/random resolvable address (most modern smartphones using LE Privacy, e.g. Pixel 8+)
+
+        <Tip>
+        Check the address type column in your `SCAN` results to choose the right value. For example, `SCAN 3 AABBCCDDEEFF 0 0x3 -48` shows address type `0` (public), so use `PAIR_LE AABBCCDDEEFF 0`. If you see `0x1` instead, use `PAIR_LE AABBCCDDEEFF 1`.
+        </Tip>
+
         <Note>
-        The "PAIR_OK_LE" confirms successful Low Energy pairing.
+        The "PAIR_OK_LE" confirms successful Low Energy pairing. Omitting the address type returns `[BT Error] Wrong parameter`.
         </Note>
       </Step>
 
@@ -678,7 +686,7 @@ Now let's verify your module is working correctly. Commands are case-insensitive
   <Accordion title="Connection Commands" icon="link">
     <CardGroup cols={1}>
       <Card title="PAIR">
-        Pair with a device
+        Pair with a Classic Bluetooth device
 
         **Syntax:** `PAIR <bt_addr>`
 
@@ -686,6 +694,26 @@ Now let's verify your module is working correctly. Commands are case-insensitive
         ```bash
         PAIR 001122334455
         ```
+      </Card>
+
+      <Card title="PAIR_LE">
+        Pair with a Bluetooth Low Energy device (required before `OPEN UTX` LE Audio streaming)
+
+        **Syntax:** `PAIR_LE <bt_addr> <addr_type>`
+
+        **Address types:**
+        - `0` — Public address (most LE Audio earbuds)
+        - `1` — Private/random resolvable address (most modern smartphones)
+
+        **Examples:**
+        ```bash
+        PAIR_LE AABBCCDDEEFF 0   # Galaxy Buds 2 Pro and similar earbuds
+        PAIR_LE 50C0F02093B6 1   # Pixel / Android phones using LE Privacy
+        ```
+
+        <Note>
+        The address type must match what `SCAN` reports for that device. Omitting it returns `[BT Error] Wrong parameter`.
+        </Note>
       </Card>
 
       <Card title="UNPAIR">
