@@ -351,7 +351,7 @@ Now let's verify your module is working correctly. Commands are case-insensitive
 
 The ATS-BT can operate as an audio **transmitter** or a **receiver**, but not both at the same time. The direction is set by the `PROFILES` configuration, and the module must be in the correct mode *before* you open an audio stream.
 
-<CardGroup cols={2}>
+<CardGroup cols={1}>
   <Card title="Transmit (TX)" icon="upload">
     ATS-BT **sends** audio out over Bluetooth — e.g. streaming its S/PDIF input to earbuds or a phone using LE Audio (`OPEN ... UTX`) or A2DP source.
     ```bash
@@ -369,10 +369,6 @@ The ATS-BT can operate as an audio **transmitter** or a **receiver**, but not bo
     ```
   </Card>
 </CardGroup>
-
-<Warning>
-Do **not** enable both directions at once (e.g. `PROFILES=ON 0 1 1 1 1 1 1`, with A2DP sink **and** source both on). The module becomes unstable and will reset when you open a stream. Always use one of the single-direction configurations above.
-</Warning>
 
 <Note>
 A `PROFILES` change only takes effect after `WRITE` followed by `RESET`. Check the current mode any time with `CONFIG` and read the `PROFILES=` line.
@@ -463,9 +459,9 @@ A `PROFILES` change only takes effect after `WRITE` followed by `RESET`. Check t
 
     For next-generation Bluetooth devices supporting LE Audio with LC3 codec.
 
-    <Warning>
-    `OPEN ... UTX` transmits audio **from** the ATS-BT, so the module must be in **transmit mode** first (`SET PROFILES=ON 0 1 0 1 1 1 1`, then `WRITE` and `RESET`). The factory default is receive mode, so a fresh module will reset on `OPEN UTX` until you switch it. See [Transmit and Receive Modes](#transmit-and-receive-modes).
-    </Warning>
+    <Note>
+    `OPEN ... UTX` transmits audio **from** the ATS-BT, so the module must be in **transmit mode** first (`SET PROFILES=ON 0 1 0 1 1 1 1`, then `WRITE` and `RESET`). See [Transmit and Receive Modes](#transmit-and-receive-modes).
+    </Note>
 
     <Steps>
       <Step title="Scan for BLE Devices">
