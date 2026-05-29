@@ -347,6 +347,37 @@ Now let's verify your module is working correctly. Commands are case-insensitive
 **Success!** If you see proper responses to these commands, your ATS-BT module is working correctly and ready for Bluetooth connections.
 </Check>
 
+## Transmit and Receive Modes
+
+The ATS-BT can operate as an audio **transmitter** or a **receiver**, but not both at the same time. The direction is set by the `PROFILES` configuration, and the module must be in the correct mode *before* you open an audio stream.
+
+<CardGroup cols={2}>
+  <Card title="Transmit (TX)" icon="upload">
+    ATS-BT **sends** audio out over Bluetooth — e.g. streaming its S/PDIF input to earbuds or a phone using LE Audio (`OPEN ... UTX`) or A2DP source.
+    ```bash
+    SET PROFILES=ON 0 1 0 1 1 1 1
+    WRITE
+    RESET
+    ```
+  </Card>
+  <Card title="Receive (RX)" icon="download">
+    ATS-BT **receives** audio from a phone or other source and plays it out on S/PDIF (A2DP sink). This is the factory default.
+    ```bash
+    SET PROFILES=ON 1 0 1 0 1 1 1
+    WRITE
+    RESET
+    ```
+  </Card>
+</CardGroup>
+
+<Warning>
+Do **not** enable both directions at once (e.g. `PROFILES=ON 0 1 1 1 1 1 1`, with A2DP sink **and** source both on). The module becomes unstable and will reset when you open a stream. Always use one of the single-direction configurations above.
+</Warning>
+
+<Note>
+A `PROFILES` change only takes effect after `WRITE` followed by `RESET`. Check the current mode any time with `CONFIG` and read the `PROFILES=` line.
+</Note>
+
 ## Bluetooth Connections
 
 <Tabs>
@@ -431,6 +462,10 @@ Now let's verify your module is working correctly. Commands are case-insensitive
     ### Connecting to LE Audio Devices
 
     For next-generation Bluetooth devices supporting LE Audio with LC3 codec.
+
+    <Warning>
+    `OPEN ... UTX` transmits audio **from** the ATS-BT, so the module must be in **transmit mode** first (`SET PROFILES=ON 0 1 0 1 1 1 1`, then `WRITE` and `RESET`). The factory default is receive mode, so a fresh module will reset on `OPEN UTX` until you switch it. See [Transmit and Receive Modes](#transmit-and-receive-modes).
+    </Warning>
 
     <Steps>
       <Step title="Scan for BLE Devices">
@@ -764,6 +799,26 @@ Now let's verify your module is working correctly. Commands are case-insensitive
         ```bash
         CLOSE 10
         ```
+      </Card>
+    </CardGroup>
+  </Accordion>
+
+  <Accordion title="Configuration Commands" icon="gear">
+    <CardGroup cols={1}>
+      <Card title="PROFILES">
+        Set the module's operating direction. The IDC777 can be a transmitter **or** a receiver, not both at once.
+
+        **Syntax:** `SET PROFILES=ON <hfp> <aghfp> <a2dp_snk> <a2dp_src> <avrcp> <ble> <spp>`
+
+        **Common values:**
+        ```bash
+        SET PROFILES=ON 0 1 0 1 1 1 1   # Transmit (LE Audio UTX / A2DP source)
+        SET PROFILES=ON 1 0 1 0 1 1 1   # Receive (A2DP sink) — factory default
+        ```
+
+        <Note>
+        Follow any `PROFILES` change with `WRITE` then `RESET`. Do **not** enable both `a2dp_snk` and `a2dp_src` at the same time — it makes the module unstable and it will reset when a stream opens.
+        </Note>
       </Card>
     </CardGroup>
   </Accordion>
