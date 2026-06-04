@@ -40,7 +40,8 @@
             "group": "Documentation",
             "pages": [
               "ats/ats-user-manual",
-              "ats/ap-flex-guide"
+              "ats/ap-flex-guide",
+              "ats/ats-vs-aio"
             ]
           },
           {
