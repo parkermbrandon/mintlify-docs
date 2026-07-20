@@ -105,6 +105,31 @@ For detailed IDC777 technical specifications and documentation, visit the [IOT74
 | **Slow Blinking** | Connected/Idle | Bluetooth connected or waiting |
 | **Off** | No Power/Idle | Check USB connection |
 
+## Configure with the ATS-BT Console
+
+The fastest way to set up the ATS-BT is the free **ATS-BT Console** app for
+Windows. It connects over the same USB cable and replaces the terminal
+workflow below — configure everything point-and-click, no UART commands
+required:
+
+- **Switch device roles** — Audio Sink, Audio Source, LE Audio, and Auracast broadcast
+- **Scan and pair** — discover nearby Classic and LE Audio devices and pair them
+- **Monitor live links** — watch connection state and audio streams in real time
+- **Built-in command console** — drop down to raw UART commands whenever you want
+
+![ATS-BT Console Dashboard](/images/ats-bt/console_dashboard.png)
+*Figure 3: ATS-BT Console dashboard*
+
+<Card title="Download ATS-BT Console" icon="download" href="/ats-bt/firmware" horizontal>
+  Grab the Windows installer from the Software Downloads page.
+</Card>
+
+<Note>
+The rest of this guide covers the UART command route — the right choice for
+automation, scripting, or macOS/Linux hosts. The ATS-BT Console is
+Windows-only.
+</Note>
+
 ## Terminal Configuration
 
 <Tabs>
@@ -131,14 +156,14 @@ For detailed IDC777 technical specifications and documentation, visit the [IOT74
     </Steps>
 
       <Tip>
-      For the best user experience, configure these terminal settings as shown in Figure 3 below
+      For the best user experience, configure these terminal settings as shown in Figure 4 below
       - **Local echo**: Force on (so you can see what you type)
       - **Implicit CR in every LF**: On (proper line endings)
       - **Implicit LF in every CR**: On (proper line endings)
     </Tip>
 
     ![PuTTY Configuration](/images/ats-bt/putty_config.png)
-    *Figure 3: PuTTY terminal configuration*
+    *Figure 4: PuTTY terminal configuration*
 
     <Info>
       To save your configuration:
